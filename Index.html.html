@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prüfungsbogen F4 · Zugführer — Landesfeuerwehrschule Baden-Württemberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECEAE3;
+    --card:#FFFFFF;
+    --ink:#16191C;
+    --ink-soft:#4A5056;
+    --line:#D8D5CC;
+    --signal:#C4122F;       /* Feuerwehr-Signalrot */
+    --signal-dk:#8E0C22;
+    --steel:#2F555F;        /* gedecktes Stahlblau */
+    --ok:#1C7A4E;
+    --ok-bg:#E7F2EC;
+    --no:#C4122F;
+    --no-bg:#FBE9EC;
+    --shadow:0 1px 0 rgba(0,0,0,.04), 0 12px 28px -22px rgba(0,0,0,.35);
+  }
+
+
+  body.group-schwarz{
+    --paper:#160914;
+    --card:#261022;
+    --ink:#FFF2FA;
+    --ink-soft:#E9BFD5;
+    --line:#5A234A;
+    --signal:#E8408C;
+    --signal-dk:#A8145D;
+    --steel:#F7B7D6;
+    --ok:#45C07D;
+    --ok-bg:#123724;
+    --no:#FF5A8F;
+    --no-bg:#3B1124;
+    --shadow:0 1px 0 rgba(255,255,255,.06), 0 18px 45px -24px rgba(232,64,140,.75);
+    background:
+      radial-gradient(circle at 18% 4%, rgba(232,64,140,.28), transparent 32%),
+      radial-gradient(circle at 88% 10%, rgba(255,192,219,.18), transparent 30%),
+      linear-gradient(135deg,#160914 0%,#250d20 58%,#360f2c 100%);
+  }
+  body.group-schwarz .wrap{position:relative}
+  body.group-schwarz header.sheet{border-bottom-color:#F7B7D6}
+  body.group-schwarz .eyebrow{color:#F7B7D6}
+  body.group-schwarz .eyebrow::before{background:#F7B7D6}
+  body.group-schwarz h1 span{color:#FF68A8;text-shadow:0 0 18px rgba(255,104,168,.45)}
+  body.group-schwarz .howto,
+  body.group-schwarz .mode-note,
+  body.group-schwarz .q,
+  body.group-schwarz .tab,
+  body.group-schwarz .chip,
+  body.group-schwarz .reset{background:rgba(38,16,34,.94);backdrop-filter:blur(8px)}
+  body.group-schwarz .score{background:#090408;border:1px solid #5A234A;box-shadow:0 12px 35px -25px rgba(232,64,140,.9)}
+  body.group-schwarz .meter{background:#3A1830}
+  body.group-schwarz .meter > i{background:linear-gradient(90deg,#E8408C,#FFC0DB)}
+  body.group-schwarz .tab[aria-selected="true"],
+  body.group-schwarz .chip[aria-pressed="true"],
+  body.group-schwarz .rail{background:linear-gradient(180deg,#E8408C,#6D164E);color:#fff;border-color:#E8408C}
+  body.group-schwarz .rail .code{color:#FFE1EF}
+  body.group-schwarz .opt{background:#1D0B19;color:#FFF2FA;border-color:#5A234A}
+  body.group-schwarz .opt:hover:not(:disabled){background:#2B1025;border-color:#F7B7D6}
+  body.group-schwarz .opt .key{background:#12070F;border-color:#5A234A;color:#F7B7D6}
+  body.group-schwarz .opt[aria-pressed="true"] .key{background:#E8408C;border-color:#E8408C;color:#fff}
+  body.group-schwarz .explain{background:#1D0B19;border-left-color:#F7B7D6}
+  body.group-schwarz .opt.is-ok{background:#123724;border-color:#45C07D}
+  body.group-schwarz .opt.is-no{background:#3B1124;border-color:#FF5A8F}
+
+  .theme-toggle{
+    position:fixed;top:16px;right:16px;z-index:60;display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.86);
+    box-shadow:var(--shadow);backdrop-filter:blur(10px);color:var(--ink);font-size:13px;font-weight:700;
+  }
+  body.group-schwarz .theme-toggle{background:rgba(9,4,8,.82);border-color:#5A234A;color:#FFE1EF}
+  .theme-toggle .label{white-space:nowrap}
+  .switch{position:relative;display:inline-block;width:48px;height:26px}
+  .switch input{opacity:0;width:0;height:0}
+  .slider{position:absolute;cursor:pointer;inset:0;background:#CFCBC1;border-radius:999px;transition:.18s;border:1px solid rgba(0,0,0,.1)}
+  .slider:before{content:"";position:absolute;height:20px;width:20px;left:2px;top:2px;background:white;border-radius:50%;transition:.18s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  .switch input:checked + .slider{background:#E8408C;border-color:#F7B7D6;box-shadow:0 0 18px rgba(232,64,140,.45)}
+  .switch input:checked + .slider:before{transform:translateX(22px)}
+  .easter-logo{display:none;align-items:center;gap:10px;margin-top:18px;padding:10px 13px;border:1px solid #5A234A;border-radius:16px;background:rgba(9,4,8,.42);width:max-content;max-width:100%}
+  body.group-schwarz .easter-logo{display:flex}
+  .easter-logo svg{width:42px;height:42px;flex:0 0 auto;filter:drop-shadow(0 0 10px rgba(232,64,140,.45))}
+  .easter-logo .brand{font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:18px;color:#FFE1EF;line-height:1}
+  .easter-logo .sub{font-size:11px;color:#E9BFD5;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+  @media (max-width:560px){.theme-toggle{position:static;margin:10px 0 0 auto;width:max-content}.easter-logo{width:100%}}
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.55;
+    font-size:16px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px 120px}
+
+  /* ---------- Kopf ---------- */
+  header.sheet{
+    border-bottom:2px solid var(--ink);
+    padding:34px 0 20px;margin-bottom:4px;
+  }
+  .eyebrow{
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;
+    letter-spacing:.22em;text-transform:uppercase;font-size:13px;
+    color:var(--signal);display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:3px;background:var(--signal);display:inline-block}
+  h1{
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;
+    font-size:clamp(34px,8vw,56px);line-height:.96;letter-spacing:-.01em;
+    margin:.18em 0 .12em;text-transform:uppercase;
+  }
+  h1 span{color:var(--signal)}
+  .lede{color:var(--ink-soft);max-width:62ch;font-size:15.5px;margin:6px 0 0}
+  .src{font-size:13px;color:var(--ink-soft);margin-top:14px}
+  .src b{color:var(--ink);font-weight:600}
+
+  /* ---------- Anleitung ---------- */
+  .howto{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;margin:18px 0 6px;font-size:14px;color:var(--ink-soft);
+    box-shadow:var(--shadow);
+  }
+  .howto b{color:var(--ink)}
+
+  /* ---------- Score-Leiste ---------- */
+  .score{
+    position:sticky;top:0;z-index:30;background:var(--ink);color:#fff;
+    margin:18px -18px 0;padding:11px 18px;display:flex;align-items:center;
+    gap:14px;flex-wrap:wrap;border-radius:0 0 4px 4px;
+  }
+  .score .lbl{font-family:"Barlow Condensed",sans-serif;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#B9BEC4}
+  .score .big{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:26px;line-height:1}
+  .score .big.q{color:#fff}
+  .score .big.r{color:#7FE3AD}
+  .meter{flex:1;min-width:120px;height:8px;background:#33383E;border-radius:99px;overflow:hidden}
+  .meter > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--signal),#F0653F);transition:width .4s ease}
+  .verdict{font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;font-size:15px;padding:3px 12px;border-radius:99px;background:#33383E;color:#B9BEC4}
+  .verdict.pass{background:var(--ok);color:#fff}
+  .verdict.fail{background:var(--signal);color:#fff}
+
+  /* ---------- Themenfilter ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 10px}
+  .chip{
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;
+    letter-spacing:.03em;border:1px solid var(--line);background:var(--card);
+    color:var(--ink-soft);padding:6px 13px;border-radius:99px;cursor:pointer;
+    transition:.15s;line-height:1.1;
+  }
+  .chip:hover{border-color:#B7B3A8}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip .n{opacity:.55;margin-left:5px;font-weight:500}
+
+
+
+  /* ---------- Modus-Tabs ---------- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
+  .tab{
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;font-size:15px;border:1px solid var(--line);background:var(--card);
+    color:var(--ink-soft);padding:10px 16px;border-radius:10px;cursor:pointer;transition:.15s;
+    box-shadow:var(--shadow);
+  }
+  .tab:hover{border-color:#B7B3A8}
+  .tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mode-note{
+    background:#FBFAF7;border:1px solid var(--line);border-radius:10px;padding:11px 14px;
+    margin:8px 0 4px;font-size:14px;color:var(--ink-soft);
+  }
+  .mode-note b{color:var(--ink)}
+
+  /* ---------- Fragenkarte ---------- */
+  .q{
+    display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    margin:14px 0;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:80px;
+  }
+  .rail{
+    flex:0 0 56px;background:var(--ink);color:#fff;display:flex;flex-direction:column;
+    align-items:center;justify-content:flex-start;padding:14px 4px;gap:6px;
+  }
+  .rail .num{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:24px;line-height:.9}
+  .rail .code{
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;
+    writing-mode:vertical-rl;transform:rotate(180deg);color:var(--signal);margin-top:6px;
+  }
+  .q.correct .rail{background:var(--ok)}
+  .q.wrong .rail{background:var(--signal)}
+  .body{flex:1;padding:16px 18px 18px;min-width:0}
+  .tag{font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;font-size:11.5px;color:var(--steel)}
+  .multi{color:var(--signal);font-weight:600;margin-left:8px}
+  .qtext{font-weight:600;font-size:17px;margin:4px 0 14px;line-height:1.4}
+
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{
+    display:flex;align-items:flex-start;gap:11px;text-align:left;width:100%;
+    border:1px solid var(--line);background:#FBFAF7;border-radius:9px;padding:11px 13px;
+    cursor:pointer;font:inherit;color:var(--ink);transition:.12s;
+  }
+  .opt:hover:not(:disabled){border-color:#B7B3A8;background:#fff}
+  .opt .key{
+    flex:0 0 26px;height:26px;border-radius:7px;border:1px solid var(--line);
+    display:grid;place-items:center;font-family:"Barlow Condensed",sans-serif;font-weight:700;
+    font-size:15px;color:var(--ink-soft);background:#fff;transition:.12s;
+  }
+  .opt[aria-pressed="true"] .key{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .opt .lab{padding-top:2px}
+  .opt:disabled{cursor:default}
+  .opt.is-ok{border-color:var(--ok);background:var(--ok-bg)}
+  .opt.is-ok .key{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .opt.is-no{border-color:var(--no);background:var(--no-bg)}
+  .opt.is-no .key{background:var(--no);color:#fff;border-color:var(--no)}
+  .opt .mark{margin-left:auto;font-family:"Barlow Condensed",sans-serif;font-weight:700;
+    font-size:13px;letter-spacing:.06em;text-transform:uppercase;align-self:center;padding-left:8px}
+  .opt.is-ok .mark{color:var(--ok)}
+  .opt.is-no .mark{color:var(--no)}
+
+  .actions{margin-top:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .check{
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;font-size:15px;border:none;background:var(--signal);color:#fff;
+    padding:9px 20px;border-radius:8px;cursor:pointer;transition:.15s;
+  }
+  .check:hover{background:var(--signal-dk)}
+  .check:disabled{background:#CFCBC1;cursor:default}
+  .status{font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;font-size:15px}
+  .status.ok{color:var(--ok)}
+  .status.no{color:var(--no)}
+
+  .explain{
+    margin-top:12px;border-left:3px solid var(--steel);background:#F3F5F4;
+    padding:11px 14px;border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink-soft);
+    display:none;
+  }
+  .explain.show{display:block}
+  .explain b{color:var(--ink)}
+
+  /* ---------- Fußleiste ---------- */
+  .foot{margin-top:30px;display:flex;justify-content:space-between;align-items:center;
+    gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+  .reset{
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.05em;
+    text-transform:uppercase;font-size:14px;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);padding:9px 18px;border-radius:8px;cursor:pointer;transition:.15s;
+  }
+  .reset:hover{border-color:var(--ink)}
+  .fine{font-size:12.5px;color:var(--ink-soft);max-width:54ch}
+
+  .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:15px}
+
+  @media (max-width:560px){
+    .rail{flex-basis:44px}
+    .qtext{font-size:16px}
+    .score{gap:10px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<label class="theme-toggle" title="Easter Egg umschalten">
+  <span class="label">Gruppe Schwarz Modus</span>
+  <span class="switch"><input type="checkbox" id="groupSchwarzToggle" aria-label="Gruppe Schwarz Modus aktivieren"><span class="slider"></span></span>
+</label>
+<div class="wrap">
+  <header class="sheet">
+    <div class="eyebrow">Theoretische Abschlussprüfung · Multiple Choice</div>
+    <h1>Prüfungsbogen <span>F4</span><br>Zugführer</h1>
+
+    <div class="easter-logo" aria-hidden="true">
+      <svg viewBox="0 0 64 64" role="img" focusable="false">
+        <path d="M31.5 58C18.5 47.5 10 37.8 10 27.6 10 17.8 17 11 25.7 11c2.8 0 5.3.8 7.3 2.1C35 11.8 37.5 11 40.3 11 49 11 56 17.8 56 27.6 56 37.8 47.2 47.5 34.5 58c-.9.7-2.1.7-3 0z" fill="#E8408C"/>
+        <path d="M24 9c3.4 1.7 6 4.4 8 8 2-3.6 4.6-6.3 8-8-5.1-1.7-10.9-1.7-16 0z" fill="#45C07D"/>
+        <path d="M20 28h25M23 36h19" stroke="#FFE1EF" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M32 19v26" stroke="#FFE1EF" stroke-width="3.4" stroke-linecap="round" opacity=".9"/>
+        <circle cx="22" cy="22" r="2" fill="#FFC0DB"/><circle cx="42" cy="23" r="2" fill="#FFC0DB"/><circle cx="31" cy="31" r="2" fill="#FFC0DB"/>
+      </svg>
+      <div><div class="brand">Erdbeertrupp</div><div class="sub">Gruppe Schwarz Edition</div></div>
+    </div>
+    <p class="lede">Fragenkatalog zur Selbstkontrolle, abgeleitet aus den Lehrgangsunterlagen für angehende Zugführerinnen und Zugführer. Aufbau wie eine theoretische Führerscheinprüfung: Antwort auswählen, bestätigen, Auswertung mit Quellenhinweis lesen.</p>
+    <p class="src">Grundlage: <b>Lernunterlagen der Landesfeuerwehrschule Baden-Württemberg</b> — Führungsorganisation, Einsatzleitung/Verbandführer, Einsatztaktik, Einsatzrecht, Löschwasserversorgung, Vorbeugender Brandschutz, Brandmeldeanlagen, Baukunde, Ausbildungslehre.</p>
+  </header>
+
+  <div class="howto">
+    <b>So funktioniert es:</b> Wähle oben den Modus: vollständiger Fragenmodus, Prüfungsmodus mit 30 zufälligen Fragen oder Lernmodus mit bereits aufgedeckten Musterlösungen. Bei Fragen mit dem Vermerk <span style="color:var(--signal);font-weight:600">Mehrfachnennung</span> sind mehrere Antworten richtig. Im Prüfungsmodus gilt eine Quote ab 80 % als bestanden.
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Quizmodus auswählen">
+    <button class="tab" id="tab-full" type="button" role="tab" aria-selected="true" data-mode="full">Vollständiger Fragenmodus</button>
+    <button class="tab" id="tab-exam" type="button" role="tab" aria-selected="false" data-mode="exam">Prüfungsmodus · 30 Zufallsfragen</button>
+    <button class="tab" id="tab-learn" type="button" role="tab" aria-selected="false" data-mode="learn">Lernmodus · Lösungen sichtbar</button>
+  </div>
+  <div class="mode-note" id="modeNote"></div>
+
+  <div class="score" id="score">
+    <span class="lbl">Beantwortet</span><span class="big q"><span id="answered">0</span>/<span id="total">0</span></span>
+    <span class="lbl">Richtig</span><span class="big r" id="rightcount">0</span>
+    <div class="meter"><i id="bar"></i></div>
+    <span class="verdict" id="verdict">offen</span>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+
+  <div class="foot">
+    <button class="reset" id="reset">Fortschritt zurücksetzen</button>
+    <button class="reset" id="newExam" type="button">Neue Zufallsprüfung</button>
+    <p class="fine">Hinweis: Dieser Übungsbogen ersetzt keine offizielle Prüfung der Landesfeuerwehrschule. Maßgeblich sind stets die aktuellen Lernunterlagen, FwDV und das Feuerwehrgesetz Baden-Württemberg.</p>
+  </div>
+</div>
+
+<script>
+// Prüfungsfragen F4 Zugführer – abgeleitet aus den Lernunterlagen der
+// Landesfeuerwehrschule Baden-Württemberg. correct = Indizes der richtigen Optionen.
+const TOPICS = {
+  FO:  "Führung & Einsatzleitung",
+  ET:  "Einsatztaktik",
+  ER:  "Einsatzrecht",
+  LW:  "Löschwasserversorgung",
+  VB:  "Vorbeugender Brandschutz",
+  BMA: "Brandmeldeanlagen",
+  BK:  "Baukunde",
+  UL:  "Ausbildungslehre"
+};
+
+const QUESTIONS = [
+  // ===================== FÜHRUNG & EINSATZLEITUNG =====================
+  { t:"FO", q:"Wie viele Gruppen führt ein Zugführer nach der „Zwei-bis-Fünf-Regel“ in der Regel?",
+    o:["Eine Gruppe","Zwei bis drei Gruppen","Zwei bis maximal fünf Gruppen","Bis zu sechs Gruppen"],
+    c:[1], e:"Die klassische Führungsstruktur: Zugführer führt zwei bis drei Gruppen. (Führungsorganisation; Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Wie viele Züge führt ein Verbandführer nach der „Zwei-bis-Fünf-Regel“?",
+    o:["Zwei bis drei Züge","Zwei bis maximal fünf Züge","Genau drei Züge","Beliebig viele Züge"],
+    c:[1], e:"Verbandführer: zwei bis maximal fünf Züge; Einsatzleiter: zwei bis maximal fünf Einsatzabschnitte. (Führungsorganisation)" },
+
+  { t:"FO", q:"Welche Aussage zur Doppelfunktion des Zugführers ist richtig?",
+    o:["Ein Zugführer darf bei zwei Gruppen gleichzeitig Gruppenführer einer Gruppe sein",
+       "Ein Zugführer kann in einem Einsatz nicht gleichzeitig die Funktion Gruppenführer und Zugführer ausüben",
+       "Der Zugführer muss immer auch einen Trupp führen",
+       "Nur bei drei Gruppen darf der Zugführer zusätzlich Gruppenführer sein"],
+    c:[1], e:"Ein Zugführer kann nicht gleichzeitig Gruppen- und Zugführer sein; er kann z. B. den Melderplatz einnehmen. (Führungsorganisation / Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Mit welcher Kennzeichnungsweste wird der Zugführer gekennzeichnet?",
+    o:["Blaue Weste","Grüne Weste","Rote Weste","Gelbe Weste"],
+    c:[1], e:"Der Zugführer trägt die grüne Weste – auch wenn er gleichzeitig Technischer Einsatzleiter ist. Der Gruppenführer trägt die blaue Weste. (Führungsorganisation)" },
+
+  { t:"FO", q:"Ein Staffel-/Gruppenführer ist gleichzeitig Technischer Einsatzleiter. Wie wird er gekennzeichnet?",
+    o:["Mit der grünen Weste","Weiterhin nur mit der blauen Weste","Mit blauer und grüner Weste","Er wird nicht gekennzeichnet"],
+    c:[1], e:"Auch als Technischer Einsatzleiter behält der Gruppenführer die blaue Weste; die Kennzeichnung richtet sich nach der taktischen Funktion. (Führungsorganisation)" },
+
+  { t:"FO", q:"Wann wird der Einheitsführer eines Fahrzeugs mit Truppbesatzung (z. B. Drehleiter) mit blauer Weste gekennzeichnet?",
+    o:["Immer","Nur wenn er als eigenständige Einheit (selbstständiger Trupp) tätig wird","Nie","Nur bei technischer Hilfeleistung"],
+    c:[1], e:"Ist das Truppfahrzeug einer Gruppe unterstellt, entfällt die Kennzeichnung; nur als selbstständige Einheit erhält der Einheitsführer die blaue Weste. (Führungsorganisation)" },
+
+  { t:"FO", q:"Ab welcher Stärke benötigt ein Zug zwingend ein eigenes Führungsfahrzeug und eine Führungsunterstützung?",
+    o:["Bereits ab einer Gruppe","Sobald der Zug größer als zwei Gruppen ist","Erst ab vier Gruppen","Grundsätzlich nie"],
+    c:[1], e:"Bis zu zwei Gruppen kann ein Zug nach FwDV 100 ohne Führungseinheit geführt werden; wird er größer (z. B. um ein Sonderfahrzeug ergänzt), braucht der Zugführer ein Führungsfahrzeug und eine Führungsunterstützung. (Führungsorganisation)" },
+
+  { t:"FO", q:"Aus mindestens wem muss die Führungsunterstützung eines Zugführers bestehen, wenn der Zug größer als zwei Gruppen ist?",
+    o:["Aus einem kompletten Führungstrupp mit drei Personen","Aus mindestens einem Fahrer (mit Sprechfunkausbildung und Fahrberechtigung)","Aus zwei Gruppenführern","Aus dem Kommandanten"],
+    c:[1], e:"Mindestens ein Fahrer, der das Führungsfahrzeug fährt, es besetzt und den Sprechfunkkontakt zur Leitstelle hält. (Führungsorganisation)" },
+
+  { t:"FO", q:"Welcher Grundsatz der Führungsorganisation ist richtig?",
+    o:["Einer Einheit dürfen mehrere Führungskräfte übergeordnet sein","Es darf immer nur eine übergeordnete Führungskraft / einen Ansprechpartner nach oben geben","Jede Gruppe braucht zwingend zwei Ansprechpartner","Der Melder ist immer Ansprechpartner nach oben"],
+    c:[1], e:"Im Einsatz darf es nach oben nur eine Führungskraft bzw. einen Ansprechpartner geben; zwei übergeordnete Führungskräfte sind zum Scheitern verurteilt. (Führungsorganisation)" },
+
+  { t:"FO", q:"Wann ist eine nächsthöhere Führungskraft (z. B. ein Zugführer) erforderlich?",
+    o:["Immer, sobald ein Fahrzeug ausrückt","Nur wenn mehr als eine Führungskraft auf der bisherigen Ebene eingesetzt ist (z. B. zwei Gruppenführer)","Nur nachts","Sobald die Polizei beteiligt ist"],
+    c:[1], e:"Eine höhere Führungskraft, um nur eine rangniedrigere zu führen, ist nie erforderlich. Ein Zugführer wird erst nötig, wenn zwei Gruppen/Gruppenführer eingesetzt sind. (Führungsorganisation)" },
+
+  { t:"FO", q:"Welche Aussage zur Rolle des Feuerwehrkommandanten trifft zu?",
+    o:["Er ist innerhalb seines Gemeindegebiets automatisch der Einsatzleiter","Er kann gleichzeitig Einsatzleiter sein und einen Teil der Kräfte taktisch führen","Er soll möglichst die Gruppenführerposition einnehmen","Er hat an der Einsatzstelle keine besondere Funktion"],
+    c:[0], e:"Der Kommandant ist nach FwG immer Einsatzleiter im Gemeindegebiet. Er kann aber nicht gleichzeitig Kräfte taktisch führen und soll Gruppen-/Zugführer nicht besetzen. (Führungsorganisation)" },
+
+  { t:"FO", q:"Die Landesfeuerwehrschule empfiehlt, dass die Einsatzleitung gebildet wird aus …",
+    o:["Einsatzleiter (Kommandant) und taktischem Führer","Kommandant, Stellvertreter und allen Gruppenführern","ausschließlich dem Zugführer","Leitstelle und Bürgermeister"],
+    c:[0], e:"Empfohlen wird die Einsatzleitung aus Kommandant (Einsatzleiter) und dem taktischen Führer der eingesetzten Einheit. (Führungsorganisation)" },
+
+  { t:"FO", q:"Wie kommuniziert der Kommandant (Einsatzleiter) mit den eingesetzten Kräften?",
+    o:["Direkt mit jedem Trupp","Nie direkt – immer indirekt über den taktischen Führer","Nur per Lautsprecher","Über die Leitstelle"],
+    c:[1], e:"Für die Einsatzkräfte ist nur der taktische Führer Ansprechpartner; der Kommandant kommuniziert immer über ihn. (Führungsorganisation)" },
+
+  { t:"FO", q:"Wer ist im Einsatz alleiniger Ansprechpartner der Leitstelle und gibt Lagemeldungen/Nachforderungen ab?",
+    o:["Jeder Gruppenführer","Die Einsatzleitung","Der Maschinist","Der Atemschutztrupp"],
+    c:[1], e:"Lagemeldungen und Nachforderungen gibt nur die Einsatzleitung; sie ist einziger Ansprechpartner für die Leitstelle (Aufgabe kann an die Führungsunterstützung delegiert werden). (Führungsorganisation)" },
+
+  { t:"FO", q:"Eine zusätzliche Führungskraft unterstützt den Kommandanten in der Einsatzleitung. Welche Aussage ist richtig?",
+    o:["Sie ist dem taktischen Führer übergeordnet","Sie hat kein Weisungsrecht gegenüber dem taktischen Führer","Sie übernimmt automatisch die Einsatzleitung","Sie ersetzt den Zugführer"],
+    c:[1], e:"Eine ergänzende Führungskraft hat kein Weisungsrecht gegenüber dem taktischen Führer. (Führungsorganisation)" },
+
+  { t:"FO", q:"Warum sollen in der Erstphase eines Einsatzes Führungskräfte möglichst nicht ausgetauscht werden?",
+    o:["Aus Höflichkeit","Weil dabei leicht Informationen verloren gehen (z. B. Atemschutzüberwachung)","Weil es die Funkordnung stört","Weil es gesetzlich verboten ist"],
+    c:[1], e:"Ein Wechsel ist gerade in der Erstphase kritisch – Informationsverluste können fatale Folgen haben (z. B. bei der Atemschutzüberwachung). (Führungsorganisation)" },
+
+  { t:"FO", q:"Ab welcher Führungsebene werden Einsatzabschnitte gebildet?",
+    o:["Bereits ab dem Gruppenführer","Ab dem Zugführer","Erst ab dem Verbandführer","Erst ab dem Landesbranddirektor"],
+    c:[2], e:"Einsatzabschnitte bildet erst der Verbandführer. Ein Zug wird nicht weiter in Einsatzabschnitte untergliedert – er kann lediglich selbst einen Einsatzabschnitt darstellen. (Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Ab welcher Führungsebene wird eine Kanaltrennung im Sprechfunk vorgenommen?",
+    o:["Innerhalb jedes Zuges","Erst ab dem Verbandführer","Ab dem Truppführer","Durch jeden Maschinisten"],
+    c:[1], e:"Eine Kanaltrennung nimmt erst der Verbandführer vor. Innerhalb eines Zuges wird keine Kanaltrennung durchgeführt; der Zugführer kann nur Kanäle zugewiesen bekommen. (Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Was ist ein „Haltepunkt“?",
+    o:["Der endgültige Aufstellort eines Fahrzeugs an der Einsatzstelle","Ein kurzer Halt in Einsatzstellennähe, um die Ordnung des Raumes / Fahrzeugaufstellung festzulegen","Der Ort der Brandmelderzentrale","Ein Sammelplatz für Verletzte"],
+    c:[1], e:"Der Haltepunkt entzerrt das Eintreffen der Kräfte; dort warten Einheiten auf Auftrag und zugewiesene Aufstellfläche. Auch ein Zugführer kann seinen Fahrzeugen einen Haltepunkt vorgeben. (Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Welche Aussage zum „Bereitstellungsraum“ ist richtig?",
+    o:["Dort werden nur Verletzte gesammelt","Dort werden bei umfangreichen Lagen Kräfte gesammelt, gegliedert und als Reserve geführt","Er ersetzt die Einsatzleitung","Er wird grundsätzlich vom Truppführer eingerichtet"],
+    c:[1], e:"Im Bereitstellungsraum werden Einsatzkräfte vorsorglich gesammelt, gegliedert und als Reserve geführt; er unterliegt einer Führung mit Registrierung und ggf. Versorgung. (Einführung Einsatzleitung)" },
+
+  { t:"FO", q:"Aus welchen drei Säulen besteht das Führungssystem nach FwDV 100?",
+    o:["Führungsvorgang, Führungsorganisation, Führungsmittel","Personal, Material, Finanzen","Lage, Befehl, Rückzug","Erkundung, Angriff, Nachbereitung"],
+    c:[0], e:"Das Führungssystem der FwDV 100 gliedert sich in Führungsvorgang, Führungsorganisation und Führungsmittel. (Einführung Einsatzleitung)" },
+
+  // ===================== EINSATZTAKTIK =====================
+  { t:"ET", q:"Wie wird „Taktik“ bei der Feuerwehr definiert?",
+    o:["Das schnellste Verlegen von Schläuchen","Das geordnete Denken und Handeln des Einheitsführers, um die richtigen Mittel zur richtigen Zeit am richtigen Ort einzusetzen","Das Auswendiglernen der FwDV","Die reine Fahrzeugaufstellung"],
+    c:[1], e:"Taktik = geordnetes Denken und Handeln, um die richtigen Mittel (Kräfte und Material) zur richtigen Zeit am richtigen Ort einzusetzen. (Einsatztaktik)" },
+
+  { t:"ET", q:"In welche drei Phasen gliedert sich der Führungsvorgang?",
+    o:["Erkundung, Löschen, Aufräumen","Lagefeststellung, Planung, Befehlsgebung","Alarm, Anfahrt, Rückfahrt","Beobachten, Warten, Reagieren"],
+    c:[1], e:"Der Führungsvorgang gliedert sich in Lagefeststellung, Planung und Befehlsgebung. (Einsatztaktik)" },
+
+  { t:"ET", q:"Woraus besteht die Phase „Planung“ im Führungsvorgang?",
+    o:["Aus Erkundung und Kontrolle","Aus Beurteilung und Entschluss","Aus Befehl und Rückmeldung","Aus Lagemeldung und Nachforderung"],
+    c:[1], e:"Die Planung besteht aus Beurteilung und Entschluss. (Einsatztaktik)" },
+
+  { t:"ET", q:"Was stellt das Kreismodell des Führungsvorgangs nach FwDV 100 dar?",
+    o:["Die Fahrzeugaufstellung","Den immer wiederkehrenden Denk- und Handlungsablauf während des Führungsvorgangs","Die Funkkanalverteilung","Den Aufbau einer Brandmeldeanlage"],
+    c:[1], e:"Das Kreismodell verdeutlicht den immer wiederkehrenden Denk- und Handlungsablauf. (Einsatztaktik)" },
+
+  { t:"ET", q:"Welche Kriterien zieht der Zugführer heran, um die beste Möglichkeit der Gefahrenabwehr auszuwählen?",
+    o:["Nur die Schnelligkeit","Sicherheit, Schnelligkeit, Aufwand, Erfolgschancen und Wechselwirkung zu anderen Maßnahmen","Nur die Kosten","Allein die Fahrzeugausstattung"],
+    c:[1], e:"Abzuwägen sind u. a. Sicherheit, Schnelligkeit, Aufwand, Erfolgschancen und Wechselwirkungen zu anderen Maßnahmen. (Einsatztaktik)" },
+
+  { t:"ET", q:"Wie geht eine Führungskraft (Erwachsener) problemorientiert vor?",
+    o:["Ausprobieren – Feststellen – Reagieren („Versuch und Irrtum“)","Erkennen – Nachdenken – angepasste Handlung","Befehlen – Abwarten – Korrigieren","Lagemeldung – Rückzug – Nachforderung"],
+    c:[1], e:"Problemorientiertes Vorgehen: Erkennen, Nachdenken, angepasste Handlung – im Gegensatz zu „Versuch und Irrtum“. (Einsatztaktik)" },
+
+  // ===================== EINSATZRECHT =====================
+  { t:"ER", q:"Welcher Art der Gefahrenabwehr ist die Feuerwehr zuzuordnen?",
+    o:["Polizeiliche Gefahrenabwehr","Nichtpolizeiliche Gefahrenabwehr","Militärische Gefahrenabwehr","Privatwirtschaftliche Gefahrenabwehr"],
+    c:[1], e:"Die Feuerwehr ist eine Einrichtung der nichtpolizeilichen Gefahrenabwehr. (Einsatzrecht)" },
+
+  { t:"ER", q:"Welche der folgenden Aufgaben sind Pflichtaufgaben der Feuerwehr nach § 2 Abs. 1 FwG? (Mehrfachnennung)",
+    o:["Hilfe bei Schadenfeuer (Bränden)","Hilfe bei öffentlichen Notständen","Technische Hilfe zur Rettung von Menschen und Tieren aus lebensbedrohlichen Lagen","Brandschutzaufklärung und Feuersicherheitsdienst"],
+    c:[0,1,2], e:"Pflichtaufgaben: Schadenfeuer, öffentliche Notstände, technische Hilfe bei lebensbedrohlichen Lagen. Brandschutzaufklärung/Feuersicherheitsdienst sind Kannaufgaben. (Einsatzrecht)" },
+
+  { t:"ER", q:"Wann liegt ein „Schadenfeuer“ vor?",
+    o:["Bei jedem offenen Feuer","Wenn durch die Verbrennung ein Schaden an Leben, Gesundheit, Eigentum von bedeutendem Wert oder der Umwelt droht","Nur bei Gebäudebränden","Nur wenn die Polizei es feststellt"],
+    c:[1], e:"Ein Schadenfeuer liegt vor, wenn mit einem Schaden an Leben, Gesundheit, Eigentum bedeutenden Werts oder der Umwelt zu rechnen ist (z. B. verbotenes Grüngutverbrennen ohne diese Gefahr ist kein Schadenfeuer). (Einsatzrecht)" },
+
+  { t:"ER", q:"Was kennzeichnet einen „öffentlichen Notstand“ im Sinne des FwG?",
+    o:["Ein einzelner Geschädigter ist betroffen","Eine unbestimmte, nicht bestimmbare Anzahl von Personen (Allgemeinheit) ist betroffen","Nur Sachwerte sind betroffen","Es liegt immer ein Brand vor"],
+    c:[1], e:"Faustregel: Ein öffentlicher Notstand liegt vor, wenn eine nicht zählbare Anzahl an Personen (Allgemeinheit) gefährdet ist; die abschließende Feststellung trifft die Gemeinde, nicht die Feuerwehr. (Einsatzrecht)" },
+
+  { t:"ER", q:"Welche Aussage zu den Kannaufgaben der Feuerwehr ist richtig?",
+    o:["Sie sind immer kostenlos","Sie sind grundsätzlich kostenpflichtig; ob die Feuerwehr sie übernimmt, entscheidet die Gemeinde","Der Einsatzleiter entscheidet selbst über die Übernahme","Sie müssen von jeder Feuerwehr übernommen werden"],
+    c:[1], e:"Kannaufgaben sind grundsätzlich kostenpflichtig; die Gemeinde (nicht Einsatzleiter/Kommandant) entscheidet über die Übernahme. (Einsatzrecht)" },
+
+  { t:"ER", q:"Wem obliegt die Technische Einsatzleitung nach § 27 Abs. 1 FwG?",
+    o:["Immer dem Kreisbrandmeister","Dem örtlich zuständigen Feuerwehrkommandanten bzw. seinem Stellvertreter","Dem ranghöchsten anwesenden Feuerwehrangehörigen aus jeder Gemeinde","Der Leitstelle"],
+    c:[1], e:"Die Technische Einsatzleitung obliegt dem örtlich zuständigen Feuerwehrkommandanten bzw. seinem Stellvertreter; sie kann delegiert werden. (Einsatzrecht)" },
+
+  { t:"ER", q:"Können Kräfte der Überlandhilfe (gemeindefremde Feuerwehr) die Technische Einsatzleitung übernehmen?",
+    o:["Ja, immer","Ja, aber nur mit höherer Qualifikation","Nein – auch bei höherer Qualifikation nicht","Nur nachts"],
+    c:[2], e:"Überlandhilfekräfte können die Einsatzleitung nicht übernehmen, auch nicht bei höherer Qualifikation. (Einsatzrecht)" },
+
+  { t:"ER", q:"Wer ist bei einem Einsatz auf dem Gelände einer Werkfeuerwehr Technischer Einsatzleiter (§ 28 FwG)?",
+    o:["Der Kommandant der Gemeindefeuerwehr","Der Leiter der Werkfeuerwehr – auch wenn die Gemeindefeuerwehr hinzukommt","Der Kreisbrandmeister","Der Bürgermeister"],
+    c:[1], e:"Auf dem Gelände einer Werkfeuerwehr ist deren Leiter Technischer Einsatzleiter, auch wenn die Gemeindefeuerwehr hinzukommt. (Einsatzrecht)" },
+
+  { t:"ER", q:"Gegenüber wem ist der Technische Einsatzleiter NICHT weisungsbefugt?",
+    o:["Gegenüber Feuerwehrkräften zur Unterstützung","Gegenüber Personen/Organisationen, die eigene gesetzliche Aufgaben wahrnehmen (z. B. Rettungsdienst bei der Patientenversorgung)","Gegenüber herangezogenen Hilfskräften","Gegenüber dem eigenen Zug"],
+    c:[1], e:"Gegenüber Kräften mit eigenen gesetzlichen Aufgaben (z. B. Rettungsdienst, Polizei in eigener Aufgabe) ist der TEL nicht weisungsbefugt. (Einsatzrecht)" },
+
+  { t:"ER", q:"Wer fordert nach dem Wortlaut des § 26 FwG Überlandhilfe an?",
+    o:["Der Bürgermeister der hilfsbedürftigen Gemeinde (delegierbar an die Feuerwehr); bei Gefahr in Verzug auch die Leitstelle","Ausschließlich der Truppführer","Nur das Innenministerium","Nur die Polizei"],
+    c:[0], e:"Anforderung durch den Bürgermeister (auch durch KBM/BBM/LBD), delegierbar an die Feuerwehr; bei Gefahr in Verzug durch die Leitstelle. Kosten trägt die anfordernde Gemeinde. (Einsatzrecht)" },
+
+  { t:"ER", q:"Welche Grundrechte können nach dem FwG im Einsatz eingeschränkt werden? (Mehrfachnennung)",
+    o:["Freiheit der Person (Art. 2 GG)","Unverletzlichkeit der Wohnung (Art. 13 GG)","Eigentum (Art. 14 GG)","Meinungsfreiheit (Art. 5 GG)"],
+    c:[0,1,2], e:"Eingeschränkt werden können Freiheit der Person, Unverletzlichkeit der Wohnung und Eigentum – stets unter Wahrung der Verhältnismäßigkeit. (Einsatzrecht)" },
+
+  { t:"ER", q:"Unter welchen Voraussetzungen dürfen Personen nach § 30 Abs. 2 FwG zur Hilfeleistung herangezogen werden?",
+    o:["Immer, auch Minderjährige","Volljährige, körperlich fähige Personen – nur wenn nicht genug Einsatzkräfte da sind und keine feuerwehrtechnischen Kenntnisse nötig sind","Nur ausgebildete Feuerwehrleute","Nur Mitglieder der Polizei"],
+    c:[1], e:"Heranziehung volljähriger, körperlich fähiger Personen nur für Hilfstätigkeiten (z. B. Sandsäcke füllen), wenn Einsatzkräfte fehlen und keine feuerwehrtechnischen Kenntnisse nötig sind. (Einsatzrecht)" },
+
+  { t:"ER", q:"Müssen Anordnungen der Feuerwehr zwangsweise durchgesetzt werden, ist …",
+    o:["der Angriffstrupp dafür zuständig","immer die Polizei um Vollzugshilfe zu bitten","der Bürgermeister hinzuzuziehen","die Leitstelle zuständig"],
+    c:[1], e:"Zur Durchsetzung von Anordnungen ist die Polizei um Vollzugshilfe zu bitten; die Feuerwehr ist dafür i. d. R. nicht ausgebildet. (Einsatzrecht)" },
+
+  { t:"ER", q:"Darf der Technische Einsatzleiter Medienvertretern einen Platzverweis erteilen?",
+    o:["Ja, jederzeit, weil Presse unerwünscht sein kann","Nur wenn tatsächlich eine Behinderung oder Gefährdung vorliegt","Nein, niemals","Nur mit Genehmigung des Bürgermeisters"],
+    c:[1], e:"Ein Platzverweis gegenüber Presse setzt eine tatsächliche Behinderung oder Gefährdung voraus; die Pressefreiheit ist ein hohes Gut. (Einsatzrecht)" },
+
+  { t:"ER", q:"Welche Kriterien gehören zur Verhältnismäßigkeit eines Grundrechtseingriffs? (Mehrfachnennung)",
+    o:["Die Maßnahme muss zur Gefahrenabwehr geeignet sein","Es ist das den Einzelnen/die Allgemeinheit am wenigsten beeinträchtigende Mittel zu wählen","Der Schaden muss im Verhältnis zur Gefahrenabwehr stehen","Die Maßnahme muss möglichst teuer sein"],
+    c:[0,1,2], e:"Geeignet, mildestes Mittel, Schaden im Verhältnis zur Gefahrenabwehr – sonst ist der Eingriff rechtswidrig. (Einsatzrecht)" },
+
+  { t:"ER", q:"Bei der Amtshilfe – wer trägt die Einsatzleitung und wer entscheidet über die Durchführung?",
+    o:["Die Einsatzleitung verbleibt bei der anfordernden Behörde; die Feuerwehr entscheidet, WIE sie hilft","Die Feuerwehr übernimmt vollständig die Einsatzleitung","Die Leitstelle leitet den Einsatz","Niemand ist verantwortlich"],
+    c:[0], e:"Bei Amtshilfe bleibt die Einsatzleitung bei der anfordernden Behörde (entscheidet OB/wie lange); die Feuerwehr entscheidet, WIE sie die Maßnahme durchführt. (Einsatzrecht)" },
+
+  { t:"ER", q:"Darf die Feuerwehr im Rahmen der Amtshilfe Aufgaben übernehmen, für die sie nicht ausgebildet/ausgerüstet ist (z. B. Türöffnung gegen gewaltbereiten Straftäter)?",
+    o:["Ja, Amtshilfe darf nie abgelehnt werden","Nein – Feuerwehrangehörige dürfen keinen Gefahren ausgesetzt werden, auf die sie nicht vorbereitet sind","Ja, wenn die Polizei es verlangt","Nur tagsüber"],
+    c:[1], e:"Aufgaben außerhalb des eigenen Gebiets, für die keine Ausbildung/Ausrüstung besteht, sind ausgeschlossen; Tätigkeiten mit zu erwartender Gewalteinwirkung sind grundsätzlich ausgeschlossen. (Einsatzrecht)" },
+
+  // ===================== LÖSCHWASSERVERSORGUNG =====================
+  { t:"LW", q:"Wer ist nach § 3 FwG verpflichtet, für die ständige Bereithaltung von Löschwasservorräten zu sorgen?",
+    o:["Der Landkreis","Die Gemeinde","Der Wasserversorger allein","Der Eigentümer jedes Gebäudes"],
+    c:[1], e:"Das FwG verpflichtet die Gemeinde zur Bereithaltung von Löschwasservorräten und Feuerlöschmitteln. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welchen Radius umfasst der „Löschbereich“ um das Brandobjekt nach DVGW W 405?",
+    o:["100 m","200 m","300 m","500 m"],
+    c:[2], e:"Der Löschbereich erfasst die Löschwasserentnahmemöglichkeiten in einem Radius von 300 m um das Brandobjekt – nicht über unüberwindbare Hindernisse hinweg. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Mindestleistung soll eine Löschwasserentnahmestelle nach W 405 erbringen?",
+    o:["100 l/min über 1 Stunde","400 l/min (24 m³/h) über 2 Stunden","1000 l/min über 30 Minuten","800 l/min über 4 Stunden"],
+    c:[1], e:"Eine Entnahmestelle soll mindestens 24 m³/h (400 l/min) über 2 Stunden ermöglichen. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Auf welchen Wert darf der Betriebsdruck im Trinkwassernetz während der Löschwasserentnahme nicht abfallen?",
+    o:["unter 0,5 bar","unter 1,5 bar","unter 3 bar","unter 6 bar"],
+    c:[1], e:"Der Restdruck von mind. 1,5 bar verhindert über das Injektorprinzip einen Schmutzeintrag in das Rohrnetz bei Leckagen. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Faustformel gilt für die Hydrantenplanung des Zugführers?",
+    o:["Ein Hydrant reicht immer aus","Pro eingesetztem Löschfahrzeug (mit Löschwasserabgabe/Weiterleitung) ist ein Hydrant einzuplanen","Zwei Hydranten pro Gruppe","Hydranten sind nicht erforderlich, wenn ein TLF da ist"],
+    c:[1], e:"Pro eingesetztem Löschfahrzeug muss ein Hydrant eingeplant werden; mehrere Entnahmestellen im 300-m-Löschbereich nutzen. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"In welche Flüssigkeitskategorie wird Löschwasser der Feuerwehr eingestuft?",
+    o:["Kategorie 1","Kategorie 2","Kategorie 3","Kategorie 4 bzw. 5"],
+    c:[3], e:"Sobald Trinkwasser zu Löschwasser wird, ist es in Flüssigkeitskategorie 4 bzw. 5 eingestuft. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Sicherungseinrichtung bietet die höchste Schutzwirkung (bis Flüssigkeitskategorie 5)?",
+    o:["Der Rückflussverhinderer","Der Systemtrenner","Der freie Auslauf","Das Standrohr"],
+    c:[2], e:"Schutzwirkung: freier Auslauf bis Kat. 5, Systemtrenner bis Kat. 4, Rückflussverhinderer nur bis Kat. 2. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Wozu dient der Feuerwehr-Systemtrenner B-FW nach DIN 14346?",
+    o:["Zur Druckerhöhung im Strahlrohr","Er verhindert den Rückfluss von Löschwasser in das Trinkwassernetz und muss bei Trinkwasserentnahme zwingend eingesetzt werden","Zum Befüllen offener Gewässer","Zur Schaumzumischung"],
+    c:[1], e:"Der B-FW wird zwischen Hydrant/Standrohr und Löschwasserleitung angeschlossen und schützt das Trinkwassernetz vor Rückfluss; bei einem Systemtrenner sind keine weiteren Sicherungsarmaturen zwingend nötig. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Faustformel gilt zur Ergiebigkeit von Hydranten (Durchmesser in mm)?",
+    o:["Unterflurhydrant D × 10 l/min, Überflurhydrant D × 15 l/min","Unterflurhydrant D × 15 l/min, Überflurhydrant D × 10 l/min","Beide D × 20 l/min","Beide D × 5 l/min"],
+    c:[0], e:"Richtwert: Unterflurhydrant Durchmesser × 10 l/min, Überflurhydrant Durchmesser × 15 l/min – jedoch nicht überall anwendbar! (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Was bedeuten blaue Hydrantenschilder mancher Wasserversorger?",
+    o:["Besonders leistungsstarke Hydranten","Hydranten, aus denen keine 24 m³/h entnehmbar sind – sie gelten nicht als Löschwasserentnahmestelle","Hydranten nur für die Polizei","Trinkwasserhydranten ohne Funktion"],
+    c:[1], e:"Blau gekennzeichnete Hydranten liefern weniger als 24 m³/h und stehen der Feuerwehr nicht als Löschwasserentnahmestelle zur Verfügung. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Wie groß ist der Reibungsverlust auf 100 m B-Schlauch bei 800 l/min (einfache Leitung)?",
+    o:["ca. 0,1 bar","ca. 0,3 bar","ca. 1,0 bar","ca. 2,0 bar"],
+    c:[2], e:"Bei 800 l/min ≈ 1,0 bar je 100 m (einfache Leitung); als Doppelleitung nur ca. 0,3 bar. Förderströme > 1000 l/min sind in B-Leitungen unzweckmäßig. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welchen Druckverlust verursacht eine Höhenzunahme von 10 m bei der Wasserförderung?",
+    o:["0,1 bar","1,0 bar","3,0 bar","kein Verlust"],
+    c:[1], e:"10 m Höhenzunahme = 1,0 bar Druckverlust; 10 m Höhenabnahme erhöhen den Druck um 1,0 bar. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welcher Pumpeneingangsdruck (pe) muss bei der geschlossenen Schaltreihe mindestens gehalten werden?",
+    o:["0,5 bar","1,5 bar","3,0 bar","8,0 bar"],
+    c:[1], e:"Bei der geschlossenen Schaltreihe ist ein pe von mind. 1,5 bar nötig; bei Ausfall einer Pumpe kommt die Förderung sofort zum Erliegen, eine Pufferung ist nicht möglich. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Worin unterscheidet sich die offene von der geschlossenen Schaltreihe?",
+    o:["Die offene Schaltreihe fördert über Pufferbehälter; dadurch sind größere Pumpenabstände möglich","Die offene Schaltreihe benötigt höheren Eingangsdruck","Die offene Schaltreihe kommt ohne Pumpen aus","Es gibt keinen Unterschied"],
+    c:[0], e:"Offene Schaltreihe: Förderung über Pufferbehälter, kein pe nötig, größere Abstände; geschlossene Schaltreihe: Pumpe-in-Pumpe, pe ≥ 1,5 bar. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Grundsätze gelten für die Wasserförderung über lange Wegstrecken? (Mehrfachnennung)",
+    o:["Stärkste Pumpe immer an die Entnahmestelle","Wenn möglich Doppelleitung verlegen","Wenn möglich unerschöpfliche Entnahmestellen (offenes Gewässer) nutzen","Maßnahmen der Verkehrsregelung übernimmt die Feuerwehr selbst"],
+    c:[0,1,2], e:"Stärkste Pumpe an die Entnahme, Doppelleitung, unerschöpfliche Entnahmestellen; die Verkehrsregelung erfolgt jedoch immer durch die Polizei. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Wann kommt der Pendelverkehr zur Wasserversorgung in Betracht?",
+    o:["Immer als erste Wahl","Nur wenn alle Anforderungen der Checkliste vollständig erfüllt sind (u. a. ausreichend TLF, Pufferbehälter, leistungsstarke Entnahmestelle)","Nur ohne Pufferbehälter","Nur bei Vegetationsbränden"],
+    c:[1], e:"Der Pendelverkehr ist sehr aufwendig und nur sinnvoll, wenn alle Checklistenpunkte erfüllt sind; an der Einsatzstelle muss ein großer Pufferbehälter bereitstehen. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Wofür wurde das HFS (Hytrans Fire System) in Baden-Württemberg vornehmlich beschafft?",
+    o:["Für die Brandschutzerziehung","Für die Überlandhilfe / leistungsfähige Wasserversorgung bei Großschadenslagen","Nur für die Berufsfeuerwehr Stuttgart","Für die Trinkwasseraufbereitung"],
+    c:[1], e:"Die HFS-Abrollbehälter wurden vornehmlich für die Überlandhilfe beschafft (z. B. Großbrände, Hochwasser); Förderleistung bis 3.500 l/min im Druck- bzw. 8.000 l/min im Lenzbetrieb. (Löschwasserversorgung)" },
+
+  // ===================== VORBEUGENDER BRANDSCHUTZ =====================
+  { t:"VB", q:"Welche Baustoffklasse ist in der Bundesrepublik in der Verwendung verboten?",
+    o:["Nichtbrennbare Baustoffe","Schwerentflammbare Baustoffe","Normalentflammbare Baustoffe","Leichtentflammbare Baustoffe"],
+    c:[3], e:"Die Verwendung leichtentflammbarer Baustoffe (z. B. Papier, Pappe) ist verboten. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Feuerwiderstandsdauer entspricht der Benennung „feuerbeständig“?",
+    o:["30 Minuten","60 Minuten","90 Minuten","180 Minuten"],
+    c:[2], e:"feuerhemmend = 30 min, hochfeuerhemmend = 60 min, feuerbeständig = 90 min. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Wofür stehen die Buchstaben R, E und I in der Klassifizierung nach DIN EN 13501?",
+    o:["Rauch, Energie, Isolation","Tragfähigkeit (R), Raumabschluss (E), Wärmedämmung unter Brandeinwirkung (I)","Reaktion, Entzündung, Intensität","Resistenz, Entrauchung, Inertisierung"],
+    c:[1], e:"R = Tragfähigkeit (Résistance), E = Raumabschluss (Étanchéité), I = Wärmedämmung (Isolation). (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Wie groß ist ein Brandabschnitt im Normalfall maximal (LBOAVO)?",
+    o:["400 m²","800 m²","1.600 m²","3.200 m²"],
+    c:[2], e:"Die Größe eines Brandabschnitts liegt im Normalfall bei max. 1.600 m²; Ausnahmen z. B. im Industriebau bei zusätzlichen Vorkehrungen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Feuerwiderstandsdauer haben Komplextrennwände im Industriebau?",
+    o:["30 Minuten","90 Minuten","120 Minuten","180 Minuten"],
+    c:[3], e:"Komplextrennwände haben eine Feuerwiderstandsdauer von 180 Minuten. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Aussagen zu Rettungswegen sind richtig? (Mehrfachnennung)",
+    o:["Jede Nutzungseinheit muss in jedem Geschoss über zwei ins Freie führende Rettungswege verfügen","Aufzüge gelten grundsätzlich als Rettungsweg","Der zweite Rettungsweg kann eine mit Feuerwehrleitern erreichbare Stelle sein","Der zweite Rettungsweg kann bei einem Sicherheitstreppenraum entfallen"],
+    c:[0,2,3], e:"Zwei Rettungswege ins Freie nötig; Aufzüge sind keine Rettungswege (Ausnahme Feuerwehraufzug); der 2. RW kann eine Feuerwehrleiterstelle sein oder bei Sicherheitstreppenraum entfallen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Wie lang darf der Rettungsweg bis zum Ausgang ins Freie nach LBO Baden-Württemberg höchstens sein?",
+    o:["15 m","25 m","35 m","50 m"],
+    c:[2], e:"Der Rettungsweg darf bis zum Ausgang ins Freie max. 35 m lang sein. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Was kennzeichnet einen Sicherheitstreppenraum?",
+    o:["In ihn dürfen weder Feuer noch Rauch eindringen","Er ist immer innenliegend ohne Schleuse","Er ersetzt den ersten Rettungsweg nie","Er ist nur in Garagen zulässig"],
+    c:[0], e:"In einen Sicherheitstreppenraum dürfen weder Feuer noch Rauch eindringen; innenliegend ist der Zugang über eine zwangsbelüftete Sicherheitsschleuse zu führen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Ab welcher Höhe gilt ein Gebäude als Hochhaus?",
+    o:["Fußboden eines Aufenthaltsraums mehr als 8 m über GOK","Fußboden mindestens eines Aufenthaltsraums mehr als 22 m über GOK","Ab 3 Vollgeschossen","Ab 10 m Firsthöhe"],
+    c:[1], e:"Hochhaus: Fußboden mindestens eines Aufenthaltsraums mehr als 22 m über Geländeoberkante; Gebäude geringer Höhe: keine Brüstung über 8 m. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Fläche darf ein einzelner Sprinklerkopf bei hoher bzw. kleiner Brandgefahr maximal schützen?",
+    o:["max. 9 m² (hohe Gefahr) bzw. max. 21 m² (kleine Gefahr)","immer max. 50 m²","max. 4 m² bzw. 12 m²","unbegrenzt"],
+    c:[0], e:"Sprinklerkopf: max. 9 m² bei hoher, max. 21 m² bei kleiner Brandgefahr; ca. 90 % der Brände werden mit bis zu 10 Sprinklern gelöscht. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Aussage zu Wandhydranten ist richtig?",
+    o:["Typ S ist für die Brandbekämpfung durch die Feuerwehr vorgesehen","Typ S dient der Selbsthilfe durch Laien (24 l/min) und ist nicht für die Feuerwehr geeignet","Typ F ist nur für Laien gedacht","Beide Typen liefern 300 l/min"],
+    c:[1], e:"Wandhydrant Typ S: Selbsthilfe durch Laien, 24 l/min, nicht für die Feuerwehr; Typ F: für die Brandbekämpfung durch die Feuerwehr geeignet. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Für welchen Löschwasserstrom sind die Löschwasseranlagen „trocken“ und „nass“ ausgelegt?",
+    o:["100 l/min","300 l/min","400 l/min","800 l/min"],
+    c:[1], e:"Löschwasseranlagen „trocken“ und „nass“ sind für 300 l/min ausgelegt. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welcher Meldertyp ist zur eigentlichen Branderkennung ungeeignet?",
+    o:["Rauchmelder","Wärmemelder","Flammenmelder","Gasmelder"],
+    c:[3], e:"Gasmelder sind zur Branderkennung ungeeignet, ermöglichen aber Abwehrmaßnahmen vor Bränden/Explosionen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Aus welchen drei Teilen besteht die Brandschutzordnung nach DIN 14096?",
+    o:["Teil A (Aushang für alle), Teil B (Personen nicht nur vorübergehend), Teil C (besondere Brandschutzaufgaben)","Teil 1, 2, 3 nach Geschosszahl","Teil rot, gelb, grün","Teil Bau, Technik, Organisation"],
+    c:[0], e:"Teil A: Aushang für alle; Teil B: Personen, die sich nicht nur vorübergehend aufhalten; Teil C: Personen mit besonderen Brandschutzaufgaben. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Ab welcher Besucherzahl gilt die Versammlungsstättenverordnung für Versammlungsräume?",
+    o:["mehr als 50 Besucher","mehr als 100 Besucher","mehr als 200 Besucher","mehr als 1.000 Besucher"],
+    c:[2], e:"Sie gilt für Versammlungsräume mit mehr als 200 Besuchern (im Freien > 1.000, Sportstadien > 5.000). (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Voraussetzung muss für die Wirkung einer Rauch- und Wärmeabzugsanlage (RWA) gegeben sein?",
+    o:["Eine ständige Sprinklerauslösung","Entsprechende Zuluftöffnungen im Brandfall","Ein geschlossenes Gebäude ohne Öffnungen","Eine Gaslöschanlage"],
+    c:[1], e:"RWA nach DIN 18232 wirken nur, wenn im Brandfall ausreichende Zuluftöffnungen vorhanden sind. (Vorbeugender Brandschutz)" },
+
+  // ===================== BRANDMELDEANLAGEN =====================
+  { t:"BMA", q:"Wie ist die Anfahrt bei Auslösen einer Brandmeldeanlage grundsätzlich zu bewerten?",
+    o:["Als wahrscheinlicher Fehlalarm – reduzierte Anfahrt","Immer von einem Brandereignis ausgehen – Einsatzmittel nach AAO (einem Gebäudebrand gleichgestellt)","Nur der ELW fährt grundsätzlich an","Es ist keine Anfahrt nötig"],
+    c:[1], e:"Es handelt sich um eine Brandmelde- und keine „Fehlalarmmeldeanlage“ – ein Brandmeldealarm ist in der AAO einem Gebäudebrand gleichzustellen. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wer entscheidet über den Abbruch der Alarmfahrt (z. B. bei Rückruf vom Objekt)?",
+    o:["Die Leitstelle","Der Einsatzleiter","Der Objektbetreiber","Der Maschinist"],
+    c:[1], e:"Die Entscheidung über einen Abbruch liegt beim Einsatzleiter, nicht bei der Leitstelle (sofern nicht per Dienstanweisung anders geregelt). (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Warum müssen dem Feuerwehr-Schlüsseldepot (FSD) immer die Objektschlüssel entnommen werden?",
+    o:["Aus Versicherungsgründen","Weil nur so alle Objektschlüssel zur Verfügung stehen – auch wenn der Hausmeister beteuert, alle zu haben","Damit die BMA gewartet wird","Das ist nicht erforderlich"],
+    c:[1], e:"Nur über das FSD stehen alle Schlüssel des Objekts zur Verfügung; daher immer entnehmen. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wohin begibt sich der Einsatzleiter nach Eintreffen möglichst zuerst?",
+    o:["Zum Verteiler","Persönlich zur Brandmelderzentrale (BMZ) bzw. Feuerwehr-Informationszentrale (FIZ)","Zum Bereitstellungsraum","Zur Drehleiter"],
+    c:[1], e:"Die BMZ/FIZ ist der einzige Ort, an dem schnell ein Überblick über die Ausdehnung des Ereignisses zu gewinnen ist; der EL geht möglichst selbst dorthin. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wie weit ist bei Auslösung eines AUTOMATISCHEN Melders zu erkunden?",
+    o:["Nur der unmittelbare Bereich um den Melder","Der komplette Meldergruppenbereich, nach Lage ggf. der gesamte Brandabschnitt","Nur der Treppenraum","Gar nicht, wenn kein Rauch sichtbar ist"],
+    c:[1], e:"Bei automatischen Meldern ist der komplette Meldergruppenbereich (ggf. der ganze Brandabschnitt) zu erkunden, da Rauch verschleppt werden kann. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wie weit ist bei Auslösung eines HANDFEUERMELDERS zu erkunden?",
+    o:["Nur das Geschoss des Melders","Alle zugänglichen Bereiche des kompletten betroffenen Gebäudes/Objekts","Nur der Treppenraum","Nur der Raum vor dem Melder"],
+    c:[1], e:"Bei Handfeuermeldern müssen alle zugänglichen Bereiche des gesamten Objekts erkundet werden, da der Meldende oft nicht am Brandort ausgelöst hat. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Darf die Feuerwehr bei einem Fehlalarm eine Meldergruppe oder einen Melder außer Betrieb nehmen?",
+    o:["Ja, zur Vermeidung weiterer Alarme","Nein, niemals – sie haftet sonst für später unerkannte Brände; nur der Objektbetreiber kann abschalten","Ja, nach Rücksprache mit der Leitstelle","Ja, wenn der Hausmeister zustimmt"],
+    c:[1], e:"Die Feuerwehr nimmt NIEMALS eine Meldergruppe/einen Melder außer Betrieb (Haftung). Nur der Objektbetreiber kann auf eigenes Risiko abschalten und muss auf Ersatzmaßnahmen hingewiesen werden. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wer unterschreibt grundsätzlich das Betriebsbuch der Brandmeldeanlage?",
+    o:["Der Hausmeister","Der Einsatzleiter","Der Maschinist","Die Leitstelle"],
+    c:[1], e:"Jeder (Fehl-)Alarm wird mit Meldergruppe, Melder und Auslösegrund ins Betriebsbuch eingetragen; unterschrieben wird es grundsätzlich vom Einsatzleiter. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Unter welcher Bedingung kann die BMA (auch am Feuerwehr-Bedienfeld) zurückgestellt werden?",
+    o:["Jederzeit","Nur wenn das Alarm auslösende Kriterium nicht mehr anliegt","Nur durch die Leitstelle","Nur mit Spezialwerkzeug"],
+    c:[1], e:"Ein Zurückstellen ist nur möglich, wenn das auslösende Kriterium nicht mehr anliegt; danach sollte auch der Alarm in der Leitstelle nicht mehr anstehen. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Wann ist bei einem Brandmeldealarm eine Drehleiter in der AAO einzuplanen?",
+    o:["Nie","Immer wenn sie zur Sicherstellung des zweiten Rettungsweges am Objekt benötigt wird","Nur bei Industriebauten","Nur tagsüber"],
+    c:[1], e:"Die LFS BW hält bei Brandmeldealarm die Kräfte eines Löschzugs für notwendig; eine Drehleiter ist immer einzuplanen, wenn sie für den zweiten Rettungsweg gebraucht wird. (Hinweise Brandmeldeanlagen)" },
+
+  // ===================== BAUKUNDE =====================
+  { t:"BK", q:"Welche Beanspruchungsart eines Bauteils führt im Gegensatz zu den anderen stets zum Einsturz?",
+    o:["Druck","Zug","Biegung","Knicken"],
+    c:[3], e:"Knicken (schlanke, druckbelastete Bauteile) führt stets zum Einsturz; es ist im Prinzip eine Überbeanspruchung durch Biegung infolge von Längskräften. (Baukunde)" },
+
+  { t:"BK", q:"Welche Lasten zählen zu den ständigen Lasten?",
+    o:["Personen und Fahrzeuge","Eigengewicht der Bauteile, Erddruck und Wasserdruck","Schnee- und Windlasten","Lagerstoffe und Einrichtungen"],
+    c:[1], e:"Ständige Lasten: Eigengewicht, Erddruck, Wasserdruck. Verkehrslasten: Personen, Fahrzeuge, Lagerstoffe, Einrichtungen, Schnee, Wind. (Baukunde)" },
+
+  { t:"BK", q:"Bei welcher Temperatur kann sich Holz spontan selbst entzünden?",
+    o:["ab ca. 100 °C","ab ca. 340 °C aufwärts (bei langer Vorerwärmung schon ab ca. 150 °C)","erst ab 800 °C","Holz entzündet sich nie selbst"],
+    c:[1], e:"Holz entzündet sich ab ca. 340 °C spontan; bei genügend langer Vorerwärmung bereits ab ca. 150 °C. Die Holzkohleschicht schützt das Innere – massive Holzbauteile bleiben lange tragfähig. (Baukunde)" },
+
+  { t:"BK", q:"Bei welcher Temperatur liegt etwa die Versagenstemperatur von ungeschützten Stahlbauteilen?",
+    o:["ca. 150 °C","ca. 350 °C","ca. 500 °C","ca. 900 °C"],
+    c:[2], e:"Die Versagenstemperatur von Stahl liegt bei ca. 500 °C; auch darunter besteht durch das Dehnungsverhalten (1,2 ‰ je 100 °C) Einsturzgefahr – Stahlkonstruktionen verhalten sich im Brand unberechenbar. (Baukunde)" },
+
+  { t:"BK", q:"Welche Aussage zu Spannbeton im Brandfall ist richtig?",
+    o:["Spannbeton ist besonders feuersicher","Die kritische Temperatur des Spannstahls liegt bei knapp über 350 °C; ein Nachlassen der Vorspannkraft führt zum sofortigen Einsturz ohne Vorwarnung","Spannbeton kündigt einen Einsturz immer deutlich an","Spannbeton dehnt sich im Brand nicht"],
+    c:[1], e:"Spannbetonteile sind feingliedrig und weit gespannt; kritische Temperatur des Spannstahls knapp über 350 °C, dann sofortiger Einsturz ohne Vorwarnung. (Baukunde)" },
+
+  { t:"BK", q:"Welche Decke ist aufgrund eingearbeiteter Stahlträger im Brandfall besonders einsturzgefährdet?",
+    o:["Plattendecke","Preußische Kappendecke","Stahlbetonrippendecke","Kassettendecke"],
+    c:[1], e:"Die preußische Kappendecke (Sonderform der Gewölbedecke) ist durch die eingearbeiteten Stahlträger im Brandfall sehr stark einsturzgefährdet. (Baukunde)" },
+
+  { t:"BK", q:"Ab welcher Spannweite werden Dächer in der Regel als Kehlbalkendach ausgeführt?",
+    o:["größer als 2,5 m","größer als 4,5 m","größer als 8 m","unabhängig von der Spannweite"],
+    c:[1], e:"Dächer mit großer Spannweite (größer als 4,5 m) werden als Kehlbalkendächer mit zusätzlichem waagrechtem Kehlbalken ausgeführt. (Baukunde)" },
+
+  { t:"BK", q:"Was beschreibt die „offene Bauweise“?",
+    o:["Gebäude ohne seitlichen Grenzabstand","Gebäude mit seitlichem Grenzabstand als Einzel-, Doppelhäuser oder Hausgruppen von höchstens 50 m Länge","Nur Hochhäuser","Gebäude ohne Dach"],
+    c:[1], e:"Offene Bauweise: mit seitlichem Grenzabstand, Hausgruppen höchstens 50 m lang. Geschlossene Bauweise: ohne seitlichen Grenzabstand. (Baukunde)" },
+
+  { t:"BK", q:"Wozu sollen Kenntnisse der Baukunde dem Zugführer im Einsatz verhelfen? (Mehrfachnennung)",
+    o:["Gefahren rechtzeitig zu erkennen und richtig einzuschätzen","Die Wahrscheinlichkeit einer Brand-/Schadensausbreitung zu beurteilen","Richtige Entscheidungen zu treffen (z. B. Abstützen, Sperrungen)","Bauanträge der Gemeinde zu prüfen"],
+    c:[0,1,2], e:"Baukunde hilft dem Zugführer, Gefahren zu erkennen, Brand-/Schadensausbreitung zu beurteilen und richtige Entscheidungen zu treffen. (Baukunde)" },
+
+  // ===================== AUSBILDUNGSLEHRE =====================
+  { t:"UL", q:"Worin liegt der wesentliche Unterschied zwischen „Probe“ und „Übung“?",
+    o:["Es gibt keinen Unterschied","„Übung“ bedeutet durch wiederholtes Tun besser werden; „Probe“ bedeutet nur ausprobieren, ob etwas gelingt","Eine Probe dauert länger","Eine Übung findet nur drinnen statt"],
+    c:[1], e:"„Übung“ kommt von üben – durch Wiederholung besser werden; „Probe“ von probieren – einmaliges Ausprobieren. Ausbildungspläne müssen Wiederholung und Lernen aus Fehlern ermöglichen. (Ausbildungslehre)" },
+
+  { t:"UL", q:"Welche Elemente muss eine motivierende Übung („Messlatte“) enthalten? (Mehrfachnennung)",
+    o:["Das Ergebnis muss für die Übenden unmittelbar ablesbar sein","Es müssen objektive Messgrößen sein (z. B. Zeit, Anzahl)","Gleiche/ähnliche Übungen müssen wiederholbar sein (Vergleichbarkeit)","Nur das Lob des Übungsleiters genügt"],
+    c:[0,1,2], e:"Unmittelbar ablesbares Ergebnis, objektive Messgrößen und Wiederholbarkeit; subjektives Lob/Tadel allein motiviert nicht dauerhaft. (Ausbildungslehre)" },
+
+  { t:"UL", q:"Welcher Grundsatz für gelungene Feuerwehrausbildung wird empfohlen?",
+    o:["Theorie und Praxis sollen zeitlich strikt getrennt werden","Theorie und Praxis sollen ineinanderfließen – keine Übung ohne nötigen theoretischen Hintergrund, keine Theorie ohne unmittelbare Anwendung","Unterricht muss immer für alle Funktionen zugleich passen","Übungen sollen möglichst selten wiederholt werden"],
+    c:[1], e:"Weg von der Trennung von Theorie und Praxis; zudem zielgruppengerecht differenzieren statt „alle müssen alles wissen“. (Ausbildungslehre)" },
+
+  // ===================== ERGÄNZUNG NACH QUALITÄTSSICHERUNG =====================
+  { t:"ET", q:"Wann ist der Einsatz mit Bereitstellung bei einem Brandeinsatz zweckmäßig?",
+    o:["Wenn Fahrzeugaufstellung, Wasserentnahmestelle und Lage des Verteilers festgelegt werden können, während die Erkundung noch läuft","Nur wenn bereits eindeutig feststeht, welches Rohr wo vorgenommen wird","Nur bei bestätigter Menschenrettung","Grundsätzlich nie bei einem zweiten Löschfahrzeug"],
+    c:[0], e:"Der Einsatz mit Bereitstellung schafft Handlungsfähigkeit, wenn die grundlegende Ordnung des Raumes festliegt, der genaue Einsatzauftrag aber noch erkundet wird. (F3 Einsatztaktik Brandeinsatz)" },
+
+  { t:"ET", q:"Welche Angaben gehören zum Befehl für einen Einsatz mit Bereitstellung?",
+    o:["Wasserentnahmestelle und Lage des Verteilers","Name des Angriffstruppführers und Funkrufname der Leitstelle","Vollständiger Angriffsweg, Ziel und Mittel des ersten Rohres","Rückzugsweg, Sammelplatz und Verpflegungspunkt"],
+    c:[0], e:"Beim Einsatz mit Bereitstellung werden Wasserentnahmestelle und Lage des Verteilers befohlen; der konkrete Einsatzauftrag folgt nach weiterer Erkundung. (F3 Einsatztaktik Brandeinsatz)" },
+
+  { t:"ET", q:"Welche Aussage zur Erkundung im Brandeinsatz ist fachlich richtig?",
+    o:["Vor Befehlen sind grundsätzlich alle vier Erkundungsphasen anzustreben; fehlende Erkundung kann den Einsatzerfolg gefährden","Die Frontalansicht ersetzt die Innenansicht grundsätzlich vollständig","Die Erkundung endet mit dem ersten Einsatzbefehl","Bei Gebäudebränden genügt die Auskunft von Nachbarn als Lagefeststellung"],
+    c:[0], e:"Die vier Phasen der Erkundung sollen ein belastbares Lagebild erzeugen. Der Führungsvorgang bleibt danach fortlaufend. (F3 Einsatztaktik Brandeinsatz)" },
+
+  { t:"ET", q:"Welche Gefahren sind bei Personen im verrauchten Bereich besonders vorrangig zu bewerten? (Mehrfachnennung)",
+    o:["Atemgifte","Angstreaktion/Panik und Orientierungslosigkeit","Brandausbreitung und thermische Einwirkung","Ausschließlich Sachwertverlust"],
+    c:[0,1,2], e:"Personen im Rauch sind unmittelbar durch Atemgifte, Ausbreitung/Hitze und lageabhängig durch Orientierungslosigkeit oder Panik gefährdet. (F3/F4 Einsatztaktik)" },
+
+  { t:"ET", q:"Welche taktische Aussage zur ersten Lagemeldung ist richtig?",
+    o:["Sie soll erst nach Einsatzende abgegeben werden, damit alle Informationen gesichert sind","Sie beschreibt kurz Lage, eingeleitete Maßnahmen und ggf. Nachforderungen, sobald erste Maßnahmen eingeleitet sind","Sie wird grundsätzlich vom Angriffstrupp abgegeben","Sie ersetzt die weitere Lagekontrolle"],
+    c:[1], e:"Die erste Lagemeldung dient der Leitstelle und nachrückenden Kräften als aktueller Überblick; sie bleibt Teil des fortlaufenden Führungsvorgangs. (F3 Einsatzlehre/Taktik Hilfeleistung; FwDV 100)" },
+
+  { t:"ET", q:"Welche Maßnahme ist bei einem Verkehrsunfall im fließenden Verkehr in der Erstphase besonders vorrangig?",
+    o:["Sofortige technische Rettung ohne Absicherung","Einsatzstellenabsicherung und Schutz der Einsatzkräfte gegen den Verkehr","Abwarten bis die Polizei vollständig abgesperrt hat","Ausschließlich Brandschutz bereitstellen"],
+    c:[1], e:"Im fließenden Verkehr ist die ungesicherte Unfallstelle eine erhebliche Eigengefährdung. Absicherung und Eigenschutz sind daher frühe Führungsaufgaben. (F3 Einsatzlehre/Taktik Hilfeleistung)" },
+
+  { t:"ET", q:"Welche Merkhilfe unterstützt die Erkundung zusätzlicher Gefahren am verunfallten Fahrzeug?",
+    o:["AUTO-Regel: Auslaufende Betriebsstoffe, Unterboden erkunden, Tankdeckel/alternative Antriebe, Objektumfeld","RWA-Regel: Rauch, Wärme, Abzug","BMA-Regel: Brandmelder, Meldergruppe, Anlage","WAS-Regel: Wasser, Angriff, Sicherung"],
+    c:[0], e:"Die AUTO-Regel hilft, typische Fahrzeuggefahren strukturiert mitzudenken, insbesondere Betriebsstoffe, Unterboden, Antrieb/Tank und Umfeld. (F3 Einsatzlehre/Taktik Hilfeleistung)" },
+
+  { t:"ET", q:"Was ist bei einem nicht ansprechbaren Patienten in einem verunfallten Fahrzeug grundsätzlich zu beachten?",
+    o:["Eine schonende Rettung hat immer Vorrang vor jeder Sofortmaßnahme","Es ist grundsätzlich von einer zeitkritischen Lage auszugehen; Notarzt und zügige Rettung sind besonders zu berücksichtigen","Der Patient verbleibt bis zum Eintreffen des Abschleppdienstes im Fahrzeug","Die Feuerwehr trifft keine Maßnahmen bis zur vollständigen Diagnose"],
+    c:[1], e:"Bei nicht ansprechbaren Patienten ist die Lage medizinisch kritisch; Einsatztaktik und Rettungsdienst müssen eng abgestimmt werden. (F3 Einsatzlehre/Taktik Hilfeleistung)" },
+
+  { t:"ER", q:"Was ist bei der Anwendung hoheitlicher Maßnahmen durch die Feuerwehr zu beachten? (Mehrfachnennung)",
+    o:["Die Maßnahme muss zur Gefahrenabwehr geeignet sein","Die Maßnahme muss erforderlich sein; ein milderes gleich wirksames Mittel darf nicht zur Verfügung stehen","Der entstehende Schaden muss im Verhältnis zum abzuwehrenden Schaden stehen","Der Einsatzleiter darf jede Maßnahme ohne Bezug zur Gefahr anordnen"],
+    c:[0,1,2], e:"Hoheitliche Eingriffe sind an die Verhältnismäßigkeit gebunden: geeignet, erforderlich und angemessen. (Einsatzrecht)" },
+
+  { t:"ER", q:"Ein Pkw blockiert im Gefahrenbereich die Aufstell- und Bewegungsflächen. Welche Aussage ist rechtlich zutreffend?",
+    o:["Der Einsatzleiter kann zur Gefahrenabwehr anordnen, den Bereich zu verlassen und das Fahrzeug zu entfernen","Die Feuerwehr darf gegenüber Dritten keinerlei Anordnungen treffen","Nur der Bürgermeister darf während des Einsatzes eine solche Anordnung geben","Das Fahrzeug darf erst nach Abschluss des Einsatzes entfernt werden"],
+    c:[0], e:"Zur Abwehr konkreter Gefahren und zur Sicherstellung wirksamer Rettungsmaßnahmen können geeignete Anordnungen getroffen werden. (Einsatzrecht)" },
+
+  { t:"ER", q:"Welche Aussage zur Amtshilfe ist richtig?",
+    o:["Amtshilfe erlaubt es, Feuerwehrangehörige auch für nicht ausgebildete gefährliche Maßnahmen einzusetzen","Auch bei Amtshilfe dürfen Feuerwehrangehörige keinen Gefahren ausgesetzt werden, auf die sie nicht vorbereitet oder ausgebildet sind","Amtshilfe ist immer eine Pflichtaufgabe nach § 2 Abs. 1 FwG","Bei Amtshilfe entfällt die Verantwortung der anfordernden Behörde"],
+    c:[1], e:"Amtshilfe erweitert nicht beliebig das Einsatzspektrum; Eigenschutz, Ausbildung und gesetzlicher Auftrag bleiben Grenzen. (Einsatzrecht)" },
+
+  { t:"ER", q:"Wer kann bei Bedarf überörtliche Hilfe anfordern, wenn die Gemeindefeuerwehr allein nicht ausreicht?",
+    o:["Nur der Gruppenführer des ersteintreffenden Fahrzeugs","Die zuständigen Stellen nach Feuerwehrgesetz; bei Gefahr im Verzug kann die Anforderung lagebedingt veranlasst werden","Ausschließlich der Rettungsdienst","Nur der Objektbetreiber"],
+    c:[1], e:"Überörtliche Hilfe dient der Verstärkung, wenn die örtliche Leistungsfähigkeit nicht genügt; bei Gefahr im Verzug ist schnelles Handeln maßgeblich. (Einsatzrecht)" },
+
+  { t:"LW", q:"Welche Faustformel zur Hydrantenplanung ist für den Zugführer praxisgerecht?",
+    o:["Ein Hydrant reicht grundsätzlich für jeden Löschzug","Pro eingesetztem Löschfahrzeug mit Löschwasserabgabe oder Weiterleitung ist ein Hydrant einzuplanen","Hydranten werden nur für das erste Rohr benötigt","Tankinhalt der Fahrzeuge ersetzt grundsätzlich die Löschwasserversorgung"],
+    c:[1], e:"Bei Brandbekämpfung oder Weiterleitung ist pro eingebundenem Löschfahrzeug ein Hydrant zu planen, um die Wasserentnahme realistisch aufzuteilen. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Mindestleistung soll eine Löschwasserentnahmestelle nach den Unterlagen grundsätzlich liefern?",
+    o:["100 l/min","200 l/min","400 l/min","1.600 l/min"],
+    c:[2], e:"Löschwasserentnahmestellen sollen mindestens 400 l/min liefern; geringere Leistungen sind für den taktischen Ansatz kritisch zu bewerten. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Aussage zum DVGW-Arbeitsblatt W 405 ist richtig?",
+    o:["Es dient als planerische Grundlage zur Ermittlung des Löschwasserbedarfs und zur Beurteilung des öffentlichen Trinkwasserrohrnetzes","Es legt die persönliche Schutzausrüstung der Feuerwehr fest","Es ersetzt die Alarm- und Ausrückeordnung","Es regelt ausschließlich die Wartung von Tragkraftspritzen"],
+    c:[0], e:"W 405 ist die planerische Grundlage für Löschwasserbedarf in Baugebieten und die Leistungsfähigkeit des Trinkwassernetzes. (Löschwasserversorgung; VB)" },
+
+  { t:"LW", q:"Was beschreibt der Begriff „Objektschutz“ in der Löschwasserversorgung?",
+    o:["Den Grundschutz für Wohngebiete ohne erhöhtes Risiko","Den über den Grundschutz hinausgehenden objektbezogenen Brandschutz bei erhöhtem Brand-, Personen- oder Sachrisiko","Die Sicherung der Einsatzstelle durch die Polizei","Die Absicherung eines Hydranten gegen Überfahren"],
+    c:[1], e:"Objektschutz ist der zusätzliche objektbezogene Löschwasserbedarf über den Grundschutz hinaus. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Welche Gefahr besteht bei zu hoher Löschwasserentnahme aus dem Trinkwassernetz?",
+    o:["Unzulässige Druckabsenkung mit möglicher Beeinträchtigung der Trinkwasserversorgung","Automatisches Abschalten aller Brandmeldeanlagen","Erhöhung des Sauerstoffgehalts im Brandraum","Keine; das Trinkwassernetz ist unbegrenzt belastbar"],
+    c:[0], e:"Übermäßige Entnahme kann den Betriebsdruck unzulässig absenken und die Trinkwasserversorgung gefährden. (Löschwasserversorgung)" },
+
+  { t:"LW", q:"Warum sind Löschwasserbehälter für abgelegene Objekte taktisch wertvoll?",
+    o:["Sie trennen Trinkwasserversorgung und Löschwasservorrat und stellen objektbezogen Wasser bereit","Sie ersetzen immer jede Wasserförderung über lange Wegstrecke","Sie erhöhen automatisch den Druck im Hydrantennetz","Sie dienen ausschließlich der Trinkwasserspeicherung"],
+    c:[0], e:"Löschwasserbehälter sichern objektbezogene Löschwasservorräte unabhängig vom Trinkwassernetz. (Löschwasserversorgung)" },
+
+  { t:"VB", q:"Welche Aufgabe hat eine Brandwand im baulichen Brandschutz?",
+    o:["Sie soll die Brandausbreitung auf andere Gebäude oder Brandabschnitte verhindern beziehungsweise ausreichend lange begrenzen","Sie dient nur der optischen Trennung von Nutzungseinheiten","Sie ersetzt grundsätzlich notwendige Rettungswege","Sie ist ausschließlich für den Schallschutz vorgesehen"],
+    c:[0], e:"Brandwände sind zentrale bauliche Maßnahmen zur Begrenzung der Brandausbreitung zwischen Gebäuden oder Brandabschnitten. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Maßnahmen zählen zum organisatorischen Brandschutz? (Mehrfachnennung)",
+    o:["Freihalten und Kennzeichnen von Rettungswegen","Brandschutzordnung und Unterweisung der Beschäftigten","Regelmäßige Kontrolle, dass Brandschutztüren nicht verkeilt werden","Einbau tragender Stahlbetonstützen"],
+    c:[0,1,2], e:"Organisatorischer Brandschutz umfasst betriebliche Regeln, Unterweisungen und das Freihalten beziehungsweise Funktionsfähig-Halten von Brandschutzeinrichtungen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Welche Aussage zu Brandschutztüren und -toren ist aus Sicht des Einsatzleiters richtig?",
+    o:["Sie dürfen im Betrieb dauerhaft offen verkeilt werden, wenn Personal anwesend ist","Sie müssen im Brandfall schließen können; offengehaltene oder blockierte Abschlüsse begünstigen die Brandausbreitung","Sie sind nur für den Einbruchschutz relevant","Sie haben keinen Einfluss auf Rauch- und Brandausbreitung"],
+    c:[1], e:"Brandschutzabschlüsse müssen funktionsfähig bleiben und schließen können, weil sie Brand- und Rauchausbreitung begrenzen. (Vorbeugender Brandschutz)" },
+
+  { t:"VB", q:"Wofür eignen sich linienförmige Brandmelder besonders?",
+    o:["Zur Überwachung großer oder hoher Räume, bei denen punktförmige Melder ungünstig wären","Ausschließlich für kleine Büroräume mit niedriger Decke","Nur zur manuellen Alarmierung durch Personen","Zur Löschwasserrückhaltung"],
+    c:[0], e:"Linienförmige Melder werden typischerweise für große/hohe Bereiche genutzt, etwa Hallen oder ähnliche Räume. (Vorbeugender Brandschutz)" },
+
+  { t:"BMA", q:"Welche Unterlagen sollte der Einsatzleiter bei einer BMA-Anfahrt bereits auf der Anfahrt nutzen?",
+    o:["Objektunterlagen/Feuerwehrpläne mit Hinweisen auf Gefahren, BMZ/FIZ, Löschanlagen, RWA und taktische Vorgaben","Ausschließlich den Stadtplan","Nur die Betriebsanleitung des Fahrzeugs","Keine Unterlagen, um unvoreingenommen zu bleiben"],
+    c:[0], e:"Objektunterlagen helfen, besondere Gefahren, Anlaufstellen und technische Einrichtungen frühzeitig in die Lagebeurteilung aufzunehmen. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BMA", q:"Was ist nach Rückstellung einer BMA bei weiterhin anstehender Alarmmeldung besonders zu beachten?",
+    o:["Die Lage ist erneut zu prüfen; das auslösende Kriterium kann noch anliegen oder erneut aufgetreten sein","Die Anlage ist immer defekt und darf ignoriert werden","Die Feuerwehr schaltet den Melder dauerhaft ab","Die Leitstelle löscht den Alarm ohne Rückmeldung"],
+    c:[0], e:"Eine BMA lässt sich nur zurückstellen, wenn das auslösende Kriterium nicht mehr anliegt; bleibt der Alarm bestehen, ist die Lage weiter zu klären. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"BK", q:"Welche Aussage zum Brandverhalten massiver Holzbauteile ist richtig?",
+    o:["Massive Holzbauteile können durch Verkohlung an der Oberfläche eine gewisse Schutzwirkung für den Kern entwickeln","Holz verliert bei 100 °C schlagartig jede Tragfähigkeit","Holz ist im Brandfall grundsätzlich unberechenbarer als ungeschützter Stahl","Holz kann nicht brennen, wenn es tragend eingebaut ist"],
+    c:[0], e:"Die entstehende Holzkohleschicht verzögert den weiteren Abbrand; massive Holzbauteile bleiben dadurch oft länger tragfähig als erwartet. (Baukunde)" },
+
+  { t:"BK", q:"Warum sind ungeschützte Stahlkonstruktionen im Brandfall besonders kritisch?",
+    o:["Stahl verliert bei Erwärmung Tragfähigkeit und dehnt sich stark aus; Versagen kann ohne lange Vorwarnzeit eintreten","Stahl entzündet sich bei Raumtemperatur","Stahl nimmt Löschwasser auf und wird dadurch schwerer","Stahl ist nur bei Frost gefährlich"],
+    c:[0], e:"Ungeschützter Stahl verliert mit steigender Temperatur Festigkeit; Dehnung und Tragfähigkeitsverlust können die Standsicherheit gefährden. (Baukunde)" },
+
+  { t:"BK", q:"Welche Aussage zu Verkehrslasten ist richtig?",
+    o:["Verkehrslasten umfassen veränderliche Lasten wie Personen, Fahrzeuge, Lagerstoffe sowie Schnee- und Windlasten","Verkehrslasten sind ausschließlich das Eigengewicht tragender Bauteile","Verkehrslasten treten nur auf Straßenbrücken auf","Verkehrslasten sind im Einsatz grundsätzlich bedeutungslos"],
+    c:[0], e:"Verkehrslasten sind veränderliche Lasten, die im Einsatz für Einsturzgefahren und Sperrentscheidungen relevant sein können. (Baukunde)" },
+
+  { t:"FO", q:"Warum ist eine klare Ordnung des Raumes Führungsaufgabe des Zugführers?",
+    o:["Weil falsche Fahrzeugaufstellung Zufahrten, Aufstellflächen und spätere Maßnahmen blockieren kann","Weil Fahrzeuge grundsätzlich möglichst nah am Brandobjekt stehen müssen","Weil die Leitstelle die Fahrzeugaufstellung im Detail vorgibt","Weil Ordnung des Raumes nur für Großschadenslagen relevant ist"],
+    c:[0], e:"Der Zugführer muss Bewegungs- und Aufstellflächen, Zu- und Abfahrten sowie nachrückende Kräfte frühzeitig berücksichtigen. (Einführung Einsatzleitung; Führungsorganisation)" },
+
+  { t:"FO", q:"Welche Aufgabe hat eine Führungsunterstützung für den Zugführer typischerweise? (Mehrfachnennung)",
+    o:["Sprechfunkkontakt zur Leitstelle halten","Dokumentation und Lagedarstellung unterstützen","Führungsfahrzeug besetzen und betreiben","Eigenständig Einsatzabschnitte bilden"],
+    c:[0,1,2], e:"Führungsunterstützung entlastet den Zugführer bei Kommunikation, Dokumentation, Lagedarstellung und Betrieb des Führungsfahrzeugs; Einsatzabschnitte sind Sache höherer Führungsebenen. (Führungsorganisation)" },
+
+  { t:"FO", q:"Was ist beim Eintreffen eines übergeordneten oder ranghöheren Feuerwehrangehörigen in der Erstphase besonders kritisch?",
+    o:["Ein automatischer Führungswechsel ohne Lageübergabe kann Informationsverluste verursachen","Der bisherige Einheitsführer muss sofort alle Maßnahmen einstellen","Alle Trupps wechseln automatisch ihren Ansprechpartner","Die Atemschutzüberwachung wird dadurch entbehrlich"],
+    c:[0], e:"Führungswechsel erfordern eine geordnete Übergabe; sonst gehen Lageinformationen, Aufträge oder sicherheitsrelevante Daten verloren. (Führungsorganisation)" },
+
+  { t:"UL", q:"Welche Aussage beschreibt eine wirksame Übungsnachbesprechung am besten?",
+    o:["Sie benennt nur Fehler, damit diese nicht wiederholt werden","Sie verbindet Beobachtungen, Lernziele, Verbesserungspunkte und konkrete Wiederholung/Vertiefung","Sie sollte möglichst entfallen, wenn die Übung gut lief","Sie bewertet ausschließlich die Geschwindigkeit"],
+    c:[1], e:"Ausbildung soll Lernen ermöglichen; dazu gehört eine strukturierte Rückmeldung mit Bezug auf Ziel, Verhalten und Verbesserung. (Unterrichtslehre)" },
+
+  { t:"UL", q:"Warum sollen Übungen realitätsnah, aber nicht überfordernd angelegt werden?",
+    o:["Damit die Übungsteilnehmer unter einsatznahen Bedingungen lernen, ohne Sicherheit und Lernziel aus dem Blick zu verlieren","Damit möglichst viele Fehler provoziert werden","Damit Theorie vollständig ersetzt werden kann","Damit der Übungsleiter weniger vorbereiten muss"],
+    c:[0], e:"Realitätsnähe erhöht den Lerntransfer; Überforderung oder unklare Ziele mindern Motivation und Ausbildungserfolg. (Unterrichtslehre)" },
+
+  { t:"UL", q:"Welche Aussage zur Zielgruppenorientierung in der Feuerwehrausbildung ist richtig?",
+    o:["Alle Dienstgrade benötigen immer die gleiche fachliche Tiefe","Ausbildung soll an Funktion, Vorwissen und Einsatzaufgabe der Teilnehmenden angepasst werden","Zugführer müssen ausschließlich Truppmannwissen wiederholen","Themen mit Praxisbezug sind für Führungskräfte ungeeignet"],
+    c:[1], e:"Ausbildung wird wirksamer, wenn Inhalt und Tiefe zur Funktion und zum Vorwissen passen. (Unterrichtslehre)" },
+
+  { t:"BMA", q:"Warum ist bei einem Brandmeldealarm die Erkundung trotz möglichem Fehlalarm konsequent durchzuführen?",
+    o:["Weil Brandmeldeanlagen nur bei bestätigten Bränden auslösen","Weil aus einem zunächst unklaren Alarm ein reales Brandereignis mit verdeckter Rauch- oder Brandausbreitung entstehen kann","Weil die Feuerwehr sonst keine Kosten abrechnen kann","Weil die Leitstelle keine Rückmeldungen annimmt"],
+    c:[1], e:"BMA-Alarme sind wie Brandereignisse zu behandeln, bis die Erkundung das Gegenteil belastbar ergibt. (Hinweise Brandmeldeanlagen)" },
+
+  { t:"VB", q:"Welche Aussage zu Löschwasseranlagen und Wandhydranten ist aus taktischer Sicht richtig?",
+    o:["Sie können eine wichtige Ergänzung sein, müssen aber lageabhängig auf Nutzbarkeit, Druck und Einsatzzweck geprüft werden","Sie ersetzen immer die eigene Wasserversorgung der Feuerwehr","Sie dürfen von der Feuerwehr grundsätzlich nie genutzt werden","Sie sind nur Dekoration in Sonderbauten"],
+    c:[0], e:"Ortsfeste Löschwasseranlagen können hilfreich sein, sind aber einsatztaktisch zu prüfen und ersetzen nicht automatisch die eigene Planung. (Vorbeugender Brandschutz)" },
+
+  { t:"ET", q:"Welche Prioritätensetzung entspricht dem Grundsatz der Gefahrenabwehr im Brandeinsatz?",
+    o:["Menschenrettung vor Brandbekämpfung, sofern Menschen konkret gefährdet sind","Sachwertschutz immer vor Eigenschutz","Brandbekämpfung immer vollständig abschließen, bevor Personen gesucht werden","Löschwasserversorgung ist unabhängig von der Lage immer erstes Ziel"],
+    c:[0], e:"Bei konkreter Menschengefährdung hat die Menschenrettung höchste Priorität; Eigenschutz und lageabhängige Brandbekämpfung bleiben mitzudenken. (F3/F4 Einsatztaktik)" },
+
+  { t:"ET", q:"Welche Aussage zum Atemschutzeinsatz beim Brandeinsatz ist richtig?",
+    o:["Der Angriffstrupp soll bei Brandeinsätzen grundsätzlich mit Atemschutz ausgerüstet werden","Atemschutz wird erst angelegt, wenn Flammen sichtbar sind","Atemschutz ist bei Innenangriffen nur optional","Der Melder entscheidet allein über den Atemschutzeinsatz"],
+    c:[0], e:"Bei Brandeinsätzen ist der Angriffstrupp grundsätzlich mit Atemschutz auszurüsten, um auf Rauch, Atemgifte und Lageänderungen vorbereitet zu sein. (F3 Einsatztaktik Brandeinsatz)" }
+
+];
+
+/* ---------- App-Logik ---------- */
+(function(){
+  const list = document.getElementById('list');
+  const filters = document.getElementById('filters');
+  const answeredEl = document.getElementById('answered');
+  const totalEl = document.getElementById('total');
+  const rightEl = document.getElementById('rightcount');
+  const bar = document.getElementById('bar');
+  const verdict = document.getElementById('verdict');
+  const modeNote = document.getElementById('modeNote');
+  const resetBtn = document.getElementById('reset');
+  const newExamBtn = document.getElementById('newExam');
+  const groupSchwarzToggle = document.getElementById('groupSchwarzToggle');
+  const tabButtons = Array.from(document.querySelectorAll('.tab[data-mode]'));
+
+  // stabile IDs vergeben
+  QUESTIONS.forEach((q,i)=>q.id=i);
+
+  const ALPHA = ['A','B','C','D','E'];
+  const PASS_PERCENT = 80;
+
+  function setGroupSchwarz(active){
+    document.body.classList.toggle('group-schwarz', active);
+    if(groupSchwarzToggle) groupSchwarzToggle.checked = active;
+    try{ localStorage.setItem('f4GroupSchwarzMode', active ? '1' : '0'); }catch(e){}
+  }
+  try{ setGroupSchwarz(localStorage.getItem('f4GroupSchwarzMode') === '1'); }catch(e){ setGroupSchwarz(false); }
+  if(groupSchwarzToggle){
+    groupSchwarzToggle.addEventListener('change', () => setGroupSchwarz(groupSchwarzToggle.checked));
+  }
+
+  const EXAM_SIZE = 30;
+  const STORAGE_KEY = 'f4-zugfuehrer-quiz-progress-v3';
+
+  let mode = 'full';             // full | exam | learn
+  let activeTopic = 'ALL';
+  let examPool = randomPool(EXAM_SIZE);
+  const states = { full:{}, exam:{} };
+
+  function encodeAnswerState(store){
+    const out = {};
+    Object.keys(store || {}).forEach(id=>{
+      const s = store[id];
+      if(!s) return;
+      out[id] = {
+        sel: Array.from(s.sel || []),
+        locked: !!s.locked,
+        correct: !!s.correct
+      };
+    });
+    return out;
+  }
+
+  function decodeAnswerState(raw){
+    const out = {};
+    Object.keys(raw || {}).forEach(id=>{
+      const s = raw[id] || {};
+      out[id] = {
+        sel: new Set(Array.isArray(s.sel) ? s.sel : []),
+        locked: !!s.locked,
+        correct: !!s.correct
+      };
+    });
+    return out;
+  }
+
+  function saveProgress(){
+    try{
+      const payload = {
+        mode,
+        activeTopic,
+        examPoolIds: examPool.map(q=>q.id),
+        states: {
+          full: encodeAnswerState(states.full),
+          exam: encodeAnswerState(states.exam)
+        },
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    }catch(e){}
+  }
+
+  function loadProgress(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      if(data && ['full','exam','learn'].includes(data.mode)) mode = data.mode;
+      if(data && (data.activeTopic === 'ALL' || TOPICS[data.activeTopic])) activeTopic = data.activeTopic;
+      if(data && Array.isArray(data.examPoolIds)){
+        const byId = new Map(QUESTIONS.map(q=>[q.id,q]));
+        const restored = data.examPoolIds.map(id=>byId.get(id)).filter(Boolean);
+        if(restored.length) examPool = restored;
+      }
+      if(data && data.states){
+        states.full = decodeAnswerState(data.states.full);
+        states.exam = decodeAnswerState(data.states.exam);
+      }
+    }catch(e){}
+  }
+
+  loadProgress();
+
+  function eq(aSet, arr){
+    if(aSet.size!==arr.length) return false;
+    return arr.every(x=>aSet.has(x));
+  }
+
+  function shuffle(arr){
+    const copy = arr.slice();
+    for(let i=copy.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [copy[i],copy[j]]=[copy[j],copy[i]];
+    }
+    return copy;
+  }
+
+  function randomPool(size){
+    return shuffle(QUESTIONS).slice(0, Math.min(size, QUESTIONS.length));
+  }
+
+  function currentState(){
+    return states[mode] || {};
+  }
+
+  function currentItems(){
+    if(mode==='exam') return examPool;
+    return QUESTIONS.filter(q=>activeTopic==='ALL'||q.t===activeTopic);
+  }
+
+  // ----- Modus-Tabs -----
+  tabButtons.forEach(btn=>{
+    btn.onclick=()=>{
+      mode = btn.dataset.mode;
+      tabButtons.forEach(b=>b.setAttribute('aria-selected', b.dataset.mode===mode));
+      if(mode==='exam' && !examPool.length) examPool = randomPool(EXAM_SIZE);
+      saveProgress();
+      buildFilters();
+      render();
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+  });
+
+  // ----- Filter-Chips -----
+  function buildFilters(){
+    filters.style.display = mode==='exam' ? 'none' : 'flex';
+    newExamBtn.style.display = mode==='exam' ? 'inline-block' : 'none';
+
+    if(mode==='exam'){
+      filters.innerHTML='';
+      modeNote.innerHTML='<b>Prüfungsmodus:</b> Es werden 30 Fragen zufällig aus dem gesamten Fragenpool gezogen. Die Lösungen erscheinen erst nach Bestätigung der jeweiligen Frage. Mit „Neue Zufallsprüfung“ wird ein neuer Prüfungspool erzeugt. Der Fortschritt wird lokal in diesem Browser gespeichert.';
+      return;
+    }
+
+    modeNote.innerHTML = mode==='learn'
+      ? '<b>Lernmodus:</b> Alle korrekten Antworten und Begründungen sind direkt sichtbar. Dieser Modus eignet sich zum Wiederholen und fachlichen Nacharbeiten.'
+      : '<b>Vollständiger Fragenmodus:</b> Alle Fragen des Katalogs können thematisch gefiltert, beantwortet und direkt ausgewertet werden. Der Fortschritt wird lokal in diesem Browser gespeichert.';
+
+    const counts = {};
+    QUESTIONS.forEach(q=>counts[q.t]=(counts[q.t]||0)+1);
+    const chips = [['ALL','Alle Themen',QUESTIONS.length]]
+      .concat(Object.keys(TOPICS).map(k=>[k,TOPICS[k],counts[k]||0]));
+    filters.innerHTML='';
+    chips.forEach(([key,label,n])=>{
+      const b=document.createElement('button');
+      b.className='chip';
+      b.type='button';
+      b.setAttribute('aria-pressed', key===activeTopic);
+      b.innerHTML = label+'<span class="n">'+n+'</span>';
+      b.onclick=()=>{activeTopic=key;saveProgress();buildFilters();render();window.scrollTo({top:0,behavior:'smooth'});};
+      filters.appendChild(b);
+    });
+  }
+
+  // ----- Fragen rendern -----
+  function render(){
+    const items = currentItems();
+    list.innerHTML='';
+    if(!items.length){ list.innerHTML='<div class="empty">Keine Fragen in diesem Modus oder Thema.</div>'; updateScore(); return; }
+    items.forEach((q,idx)=>list.appendChild(card(q,idx+1)));
+    updateScore();
+  }
+
+  function card(q,displayNum){
+    const learnMode = mode==='learn';
+    const store = currentState();
+    const st = learnMode
+      ? {sel:new Set(q.c), locked:true, correct:true, learning:true}
+      : (store[q.id] || (store[q.id]={sel:new Set(),locked:false,correct:false}));
+    const multi = q.c.length>1;
+
+    const wrap=document.createElement('div');
+    wrap.className='q'+(st.locked?(st.correct?' correct':' wrong'):'');
+
+    const rail=document.createElement('div');
+    rail.className='rail';
+    rail.innerHTML='<div class="num">'+displayNum+'</div><div class="code">'+q.t+'</div>';
+
+    const body=document.createElement('div');
+    body.className='body';
+
+    const tag=document.createElement('div');
+    tag.className='tag';
+    tag.innerHTML=TOPICS[q.t]+(multi?'<span class="multi">· Mehrfachnennung</span>':'')+(learnMode?'<span class="multi">· Musterlösung</span>':'');
+    body.appendChild(tag);
+
+    const qt=document.createElement('div');
+    qt.className='qtext';qt.textContent=q.q;
+    body.appendChild(qt);
+
+    const opts=document.createElement('div');
+    opts.className='opts';
+    q.o.forEach((text,i)=>{
+      const o=document.createElement('button');
+      o.className='opt';o.type='button';
+      o.setAttribute('aria-pressed', st.sel.has(i));
+      o.innerHTML='<span class="key">'+ALPHA[i]+'</span><span class="lab">'+text+'</span>';
+      if(st.locked){
+        o.disabled=true;
+        const isRight=q.c.includes(i);
+        const wasSel=st.sel.has(i);
+        if(isRight){o.classList.add('is-ok');o.insertAdjacentHTML('beforeend','<span class="mark">richtig</span>');}
+        else if(wasSel){o.classList.add('is-no');o.insertAdjacentHTML('beforeend','<span class="mark">falsch</span>');}
+      }else{
+        o.onclick=()=>{
+          if(multi){ st.sel.has(i)?st.sel.delete(i):st.sel.add(i); }
+          else { st.sel.clear(); st.sel.add(i); }
+          saveProgress();
+          render();
+        };
+      }
+      opts.appendChild(o);
+    });
+    body.appendChild(opts);
+
+    const actions=document.createElement('div');
+    actions.className='actions';
+    if(learnMode){
+      const stx=document.createElement('span');
+      stx.className='status ok';
+      stx.textContent='✓ Musterlösung sichtbar';
+      actions.appendChild(stx);
+    }else if(!st.locked){
+      const btn=document.createElement('button');
+      btn.className='check';btn.textContent='Antwort bestätigen';
+      btn.disabled = st.sel.size===0;
+      btn.onclick=()=>{
+        st.locked=true;
+        st.correct=eq(st.sel,q.c);
+        saveProgress();
+        render();
+      };
+      actions.appendChild(btn);
+    }else{
+      const stx=document.createElement('span');
+      stx.className='status '+(st.correct?'ok':'no');
+      stx.textContent=st.correct?'✓ Richtig beantwortet':'✗ Leider falsch';
+      actions.appendChild(stx);
+    }
+    body.appendChild(actions);
+
+    const ex=document.createElement('div');
+    ex.className='explain'+(st.locked?' show':'');
+    ex.innerHTML='<b>Begründung:</b> '+q.e;
+    body.appendChild(ex);
+
+    wrap.appendChild(rail);
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  // ----- Auswertung -----
+  function updateScore(){
+    const items=currentItems();
+    const total=items.length;
+    let answered=0, right=0;
+
+    if(mode==='learn'){
+      answered=total;
+      right=total;
+      bar.style.width='100%';
+      totalEl.textContent=total;
+      answeredEl.textContent=answered;
+      rightEl.textContent=right;
+      verdict.textContent='Lernmodus';
+      verdict.className='verdict pass';
+      return;
+    }
+
+    const store=currentState();
+    items.forEach(q=>{const s=store[q.id]; if(s&&s.locked){answered++; if(s.correct)right++;}});
+    totalEl.textContent=total;
+    answeredEl.textContent=answered;
+    rightEl.textContent=right;
+    const pct = answered? Math.round(right/answered*100):0;
+    bar.style.width = total ? (answered/total*100)+'%' : '0%';
+    if(answered===0){verdict.textContent='offen';verdict.className='verdict';}
+    else{
+      verdict.textContent= pct+'\u00A0% richtig';
+      verdict.className='verdict '+(pct>=PASS_PERCENT?'pass':'fail');
+      if(mode==='exam' && answered===total){
+        verdict.textContent = pct>=PASS_PERCENT ? 'Bestanden · '+pct+'\u00A0%' : 'Nicht bestanden · '+pct+'\u00A0%';
+      }
+    }
+  }
+
+  resetBtn.onclick=()=>{
+    if(mode==='full'){ states.full={}; }
+    else if(mode==='exam'){ states.exam={}; }
+    else if(mode==='learn'){
+      states.full={};
+      states.exam={};
+    }
+    saveProgress();
+    render();window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  newExamBtn.onclick=()=>{
+    examPool = randomPool(EXAM_SIZE);
+    states.exam={};
+    mode='exam';
+    saveProgress();
+    tabButtons.forEach(b=>b.setAttribute('aria-selected', b.dataset.mode===mode));
+    buildFilters();
+    render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  tabButtons.forEach(b=>b.setAttribute('aria-selected', b.dataset.mode===mode));
+  buildFilters();
+  render();
+})();
+</script>
+</body>
+</html>
